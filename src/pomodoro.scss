@@ -1,0 +1,83 @@
+.repeatHeader {
+    text-align: center;
+    font-size: 4vh;
+    line-height: 3vh;
+    margin: 2.5vh 0 1vh 0;
+    padding: 0;
+}
+.repeat {
+    margin: 1rem 0 1rem 0;
+    position: relative;
+    padding: 0;
+    background-color: #2b2b2b;
+    color: white;
+    font-size: 3vh;
+    border: white 0.1rem solid;
+    border-radius: 2vh;
+    padding: 1vh 0 1vh 0;
+    width: 100%;
+}
+.pomodoro {
+    .pomodoroContainer {
+        width: 100%;
+        display: flex;
+        border-radius: 2vh;
+        border: white 0.1rem solid;
+        .pomodoroHeader{
+            padding: 1% 1% 1% 1%;
+            width: 40%;
+            display: flex;
+            align-items: center;
+            font-size: 2vh;
+        }
+        div {
+            display: flex;
+            width: 30%;
+            border-left: white 0.1rem solid;
+            padding: 1% 1% 1% 1%;
+            h1 {
+                padding: 1% 1% 1% 1%;
+                width: 40%;
+                display: flex;
+                align-items: center;
+                font-size: 2vh;
+            }
+            input {
+                background-color: #2b2b2b;
+                color: white;
+                height: 80%;
+                font-size: 3vh;
+                width: 50%;
+                border: white 0.1rem solid;
+                border-radius: 2vh;
+            }
+        }
+    }
+}
+.clock {
+    font-size: 20vh;
+    text-align: center;
+}
+.session {
+    font-size: 5vh;
+}
+@media (max-aspect-ratio: 1/1) {
+    .pomodoro {
+        .pomodoroContainer {
+            div {
+                flex-direction: column;
+                input {
+                    width: unset;
+                    height: 17%;
+                }
+            }
+    }
+    .clock {
+        font-size: 15vw;
+        text-align: center;
+    }
+    .session {
+        font-size: 3.5vw;
+    }
+    }
+}
