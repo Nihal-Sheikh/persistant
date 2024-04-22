@@ -4,6 +4,6 @@ import './index.scss';
 import Ui from './Ui.tsx';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Ui pageIndex={0}/>
+    <Ui/>
   </React.StrictMode>,
 )
