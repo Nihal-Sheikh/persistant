@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react';
-
-export default function App(props) {
+import { useState, useEffect } from 'react';
+interface AppProps {
+  restTime: number;
+  sessionTime: number;
+  repeatCount: number;
+}
+export default function App(props: AppProps) {
     const restTime: number = props.restTime * 60;
     const workTime: number = props.sessionTime * 60;
     const repeats: number = (props.repeatCount * 2);
@@ -13,7 +17,7 @@ export default function App(props) {
     useEffect(() => {
       const interval: NodeJS.Timeout = setInterval(() => {
         setTotalSeconds((prevTotalSeconds) => {
-        let newTotalSeconds: number = prevTotalSeconds + 1;
+        const newTotalSeconds: number = prevTotalSeconds + 1;
         if (newTotalSeconds >= currentSession) {
           if (working) {
             setCurrentSession(restTime);
@@ -49,7 +53,7 @@ export default function App(props) {
     const seconds: number = totalSeconds % 60;
     const minutes: number = Math.floor(totalSeconds / 60) % 60;
     const hours: number = Math.floor(totalSeconds / 3600);
-    if (props.sessionTime === 0 || props.sessionTime === '') {
+    if (props.sessionTime === 0) {
         return <></>;
     } else if (totalTime > 480) {
         window.alert('Total time should be less than 8 hours. We do not allow nor encourage overtime');

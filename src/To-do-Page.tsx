@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react"
+import { useState , ChangeEvent} from "react"
 function App() {
-    const [tasks, setTasks] = useState([])
+    const [tasks, setTasks] = useState<string[]>([])
     const [newTask, setNewTask] = useState("")
     const [editing, setEditing] = useState(false)
     const [editIndex, setEditIndex] = useState(-1)
-    const [usingTImer, setUsingTimer] = useState(false)
-    const [timerIndex, setTimerIndex] = useState(-1)
-    function handleChange(e) {
+    // const [usingTImer, setUsingTimer] = useState(false)
+    // const [timerIndex, setTimerIndex] = useState(-1)
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setNewTask(e.target.value)
     }
     function addTask() {
         setTasks([...tasks, newTask])
         setNewTask("")
     }
-    function deleteTask(index) {
+    function deleteTask(index: number) {
         const newTasks = [...tasks]
         newTasks.splice(index, 1)
         setTasks(newTasks)
     }
-    function toggleEditMode(index) {
+    function toggleEditMode(index: number) {
         setEditIndex(index)
         setNewTask(`${index + 1}. ${tasks[index]}`)
         setEditing(!editing)
@@ -27,9 +27,9 @@ function App() {
         if (newTask && editIndex >= 0) 
         {
             const newTasks = [...tasks]
-            let index:number;
+            let index:number = -1;
             let indexTemp:string;
-            let lim:string;
+            let lim:string = '';
             for (const c of newTask) {
                 if (c === ".") {
                     indexTemp = newTask.slice(0, newTask.indexOf(c))
@@ -58,7 +58,7 @@ function App() {
     }
     setEditing(false)
     }
-    function moveTaskUp(index) {
+    function moveTaskUp(index: number) {
         if (index > 0) {
             const newTasks = [...tasks]
             const temp = newTasks[index - 1]
@@ -67,7 +67,7 @@ function App() {
             setTasks(newTasks)
         }
     }
-    function moveTaskDown(index) {
+    function moveTaskDown(index: number) {
         if (index < tasks.length - 1) {
             const newTasks = [...tasks]
             const temp = newTasks[index + 1]
@@ -92,7 +92,7 @@ function App() {
             <ol>
                 {
                 tasks.map((task, index) =>
-                 <li className={`listItems ${timerIndex === index ? "timed" : ""}`} key={index}><span>{index + 1}. {task}</span>
+                 <li className={`listItems`} key={index}><span>{index + 1}. {task}</span>
                  <div>
                     <button type="button" onClick={() => deleteTask(index)}>.<i className="fa fa-trash"></i></button>
                     <button type="button" onClick={() => toggleEditMode(index)}>.<i className="fa fa-edit"></i></button>

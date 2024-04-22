@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import App from "./Homepage";
 import Focus from "./focusTab";
 import Todo from "./To-do-Page";
 import Contact from "./contact";
-export default function Ui(props) {
+export default function Ui(props: {pageIndex:number}) {
     const [currentWeather, setCurrentWeather] = useState('NL');
     let Page = App;
     switch (Number(props.pageIndex)) {
@@ -44,19 +44,18 @@ export default function Ui(props) {
 
         getWeather();
     }, []);
-
-    const Underpseudoelement = document.getElementsByClassName("Uipseudo-element");
     
+    const Underpseudoelement = document.getElementsByClassName("Uipseudo-element") as HTMLCollectionOf<HTMLElement>;
+
     function Underlinepseudoelement(l: number) {
-        Underpseudoelement[l].style.transition = "width 0.5s";
-        Underpseudoelement[l].style.width = "100%";
-    }
-    
-    function DeUnderlinepseudoelement(l: number) {
-        Underpseudoelement[l].style.transition = "width 0.5s";
-        Underpseudoelement[l].style.width = "0%";
+        (Underpseudoelement[l] as HTMLElement).style.transition = "width 0.5s";
+        (Underpseudoelement[l] as HTMLElement).style.width = "100%";
     }
 
+    function DeUnderlinepseudoelement(l: number) {
+        (Underpseudoelement[l] as HTMLElement).style.transition = "width 0.5s";
+        (Underpseudoelement[l] as HTMLElement).style.width = "0%";
+    }
     return (
         <>
             <nav>

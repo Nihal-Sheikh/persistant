@@ -1,18 +1,19 @@
-import React from 'react';
 const App = () => {
-  const image = document.getElementsByClassName('homepageImg');
-  function infoBoxDown(i:number){
-    image[i].style.transition = "all 0.5s ease-in-out";
-    image[i].style.transform = `scale(0.98)`;
-    image[i].children[0].style.filter = `brightness(0.5)`;
-    image[i].children[1].style.transform = `translate(0%,0%)`;    
-  }
-  function infoBoxUp(i:number){
-    image[i].style.transition = "all 0.5s ease-in-out";
-    image[i].style.transform = `scale(1)`;
-    image[i].children[0].style.filter = `brightness(1)`;
-    image[i].children[1].style.transform = `translate(0%,-101%)`;
-  }
+  const image = document.getElementsByClassName('homepageImg') as HTMLCollectionOf<HTMLElement>;
+
+function infoBoxDown(i:number){
+  image[i].style.transition = "all 0.5s ease-in-out";
+  image[i].style.transform = `scale(0.98)`;
+  (image[i].children[0] as HTMLElement).style.filter = `brightness(0.5)`;
+  (image[i].children[1] as HTMLElement).style.transform = `translate(0%,0%)`;    
+}
+
+function infoBoxUp(i:number){
+  image[i].style.transition = "all 0.5s ease-in-out";
+  image[i].style.transform = `scale(1)`;
+  (image[i].children[0] as HTMLElement).style.filter = `brightness(1)`;
+  (image[i].children[1] as HTMLElement).style.transform = `translate(0%,-101%)`;
+}
   return (
     <main>
         <section className=''>

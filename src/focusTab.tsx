@@ -1,4 +1,3 @@
-import { Component, useState } from 'react';
 import PomodoroInput from "./PomodoroInput";
 
 export default function focusMode() {
