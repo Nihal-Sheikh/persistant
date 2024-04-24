@@ -76,7 +76,7 @@ function App() {
             setTasks(newTasks)
         }
     }
-    return <main>
+    return <section>
         <h1 className="header">Discover to-do with persistant</h1>
         <p className="description">
             Utilizing a to-do list is an invaluable tool for organizing tasks and ensuring nothing is overlooked.
@@ -101,6 +101,6 @@ function App() {
                 }
             </ol>
         </article>
-    </main>
+    </section>
 }
 export default App

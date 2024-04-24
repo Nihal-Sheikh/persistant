@@ -38,7 +38,9 @@ nav {
         margin: 0;
         li {
             margin: 0 4vh 0 0;
-            
+            h1 {
+                margin: 0;
+            }
         }
     }
     h1 {
@@ -197,7 +199,7 @@ section {
     .HambergerContainer {
         display: flex;
     }
-    nav h1 {
+    nav .logo {
         display: none;
     }
     nav ul li {
