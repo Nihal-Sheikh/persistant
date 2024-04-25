@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
-export function WeatherPage() {
+export default function WeatherPage() {
     useEffect(() => {
         async function getWeather() {
             try {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(async (position) => {
                         const latitude = position.coords.latitude;
-                        const longitude = position.coords.longitude;
-                        console.log(position)
-                        
+                        const longitude = position.coords.longitude;                        
                         const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=5554fa749437431fa7a125354240802&q=${latitude},${longitude}&aqi=no`);
                         const data = await response.json();
                         console.log(data);

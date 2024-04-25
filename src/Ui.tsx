@@ -6,6 +6,7 @@ import App from "./Homepage";
 import Focus from "./focusTab";
 import Todo from "./To-do-Page";
 import ExpenseTracker from "./expenseTracker";
+import Weather from "./Weather";
 import Contact from "./contact";
 export default function Ui() {
     const [currentWeather, setCurrentWeather] = useState('NL');
@@ -23,6 +24,9 @@ export default function Ui() {
             break;
         case 3:
             Page = ExpenseTracker;
+            break;
+        case 4:
+            Page = Weather;
             break;
         default:
             break;
@@ -78,7 +82,7 @@ export default function Ui() {
                     <li className='UIListItem' onPointerEnter={() => Underlinepseudoelement(0)} onPointerLeave={() => DeUnderlinepseudoelement(0)}><h1 onClick={() => setIndex(1)}><span>Focus</span> <i className='fa fa-sun-o'></i>   <div className='Uipseudo-element'></div></h1></li>
                     <li className="UIListItem" onPointerEnter={() => Underlinepseudoelement(1)} onPointerLeave={() => DeUnderlinepseudoelement(1)}> <h1 onClick={() => setIndex(2)}> <span>To-Do</span> <img src='./Todo.png'id='icon' alt='icon'></img><div className="Uipseudo-element"></div></h1></li>
                     <li className="UIListItem" onPointerEnter={() => Underlinepseudoelement(2)} onPointerLeave={() => DeUnderlinepseudoelement(2)}><h1 onClick={() => setIndex(3)}><span>Expense-Tracker</span> <i className='fa fa-money'></i><div className="Uipseudo-element"></div></h1></li>
-                    <li className="UIListItem" onPointerEnter={() => Underlinepseudoelement(3)} onPointerLeave={() => DeUnderlinepseudoelement(3)}>{currentWeather} <div className="Uipseudo-element"></div></li>
+                    <li className="UIListItem" onPointerEnter={() => Underlinepseudoelement(3)} onPointerLeave={() => DeUnderlinepseudoelement(3)} onClick={() => setIndex(4)}>{currentWeather} <div className="Uipseudo-element"></div></li>
                 </ul>
             </nav>
             <main>
