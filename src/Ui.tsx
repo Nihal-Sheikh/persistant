@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './pomodoro.scss';
 import './To-do.scss';
 import './expenseTracker.scss';
+import './Weather.scss';
 import App from "./Homepage";
 import Focus from "./focusTab";
 import Todo from "./To-do-Page";

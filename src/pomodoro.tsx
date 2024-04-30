@@ -13,21 +13,17 @@ export default function App(props: AppProps) {
     const [totalSeconds, setTotalSeconds] = useState<number>(0);
     const [currentSession, setCurrentSession] = useState<number>(workTime);
     const [working, setWorking] = useState<boolean>(true);
-
+    let date: Date;
     useEffect(() => {
+      date = new Date();
+      console.log(date);
+      const timeInSeconds: number = (date.getHours() * 3600) + (date.getMinutes() * 60) + date.getSeconds();
       const interval: NodeJS.Timeout = setInterval(() => {
-        setTotalSeconds((prevTotalSeconds) => {
-        const newTotalSeconds: number = prevTotalSeconds + 1;
-        if (newTotalSeconds >= currentSession) {
-          if (working) {
-            setCurrentSession(restTime);
-            setWorking(false);
-          } else {
-            setCurrentSession(workTime);
-            setWorking(true);
-          }
-        }
-        return newTotalSeconds;
+        setTotalSeconds(() => {
+        const newTime = new Date();
+        const newTotalSeconds: number = (newTime.getHours() * 3600) + (newTime.getMinutes() * 60) + newTime.getSeconds();
+        const totalSeconds: number = newTotalSeconds - timeInSeconds;
+        return totalSeconds;
       });
     }, 1000);
     if (repeatsDone >= repeats) {

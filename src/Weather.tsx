@@ -1,5 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+interface WeatherData {
+    current: {
+        temp_c: number;
+        feelslike_c: number;
+        humidity: number;
+        is_day: number;
+        precip_mm: number;
+        condition: {
+            text: string;
+            code: number;
+        };
+    };
+}
 export default function WeatherPage() {
+    const [currentWeather, setCurrentWeather] = useState<WeatherData|null>(null);
     useEffect(() => {
         async function getWeather() {
             try {
@@ -9,6 +23,7 @@ export default function WeatherPage() {
                         const longitude = position.coords.longitude;                        
                         const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=5554fa749437431fa7a125354240802&q=${latitude},${longitude}&aqi=no`);
                         const data = await response.json();
+                        setCurrentWeather(data);
                         console.log(data);
                     }, () => {
                     });
@@ -24,7 +39,34 @@ export default function WeatherPage() {
     }, []);
 
     return <section>
-        <h1 className="header">Weather</h1>
-        <p className="description">Get to know the current weather with Persistant and be prepared for any surprises from the sky.</p>
+        <h1 className="header">Explore Weather with Persistant</h1>
+        <p className="description">Stay informed with Persistant's comprehensive weather updates, ensuring you're prepared for any atmospheric surprises.
+         Our reliable forecasts provide detailed insights into temperature, precipitation, and more, allowing you to plan your day with confidence. 
+         Count on Persistant to keep you ahead of the weather curve and ready for whatever nature brings your way.
+         </p>
+         <figure className="weather">
+            <figure id="humidity">
+                <div>
+                    <h1 className="header tempsub">Humidity: </h1>
+                    <h2 className="TemperatureHeaders">{currentWeather?.current?.humidity}%</h2>
+                </div>
+            </figure>
+            <figure id="weatherIconTemperature">
+                <div>
+                    <h1 className="header tempsub">Temperature: </h1>
+                    <h2 className="TemperatureHeaders">{currentWeather?.current?.temp_c}°C</h2>
+                </div>
+                <div>
+                    <h1 className="header tempsub">Feels Like: </h1>
+                    <h2 className="TemperatureHeaders">{currentWeather?.current?.feelslike_c}°C</h2>
+                </div>
+            </figure>
+            <figure id="Precipitation">
+                <div>
+                    <h1 className="header tempsub">Average rainfall: </h1>
+                    <h2 className="TemperatureHeaders">{currentWeather?.current?.precip_mm}mm</h2>
+                </div>
+            </figure>
+         </figure>
     </section>    
 }
