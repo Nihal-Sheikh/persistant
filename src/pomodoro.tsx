@@ -16,7 +16,6 @@ export default function App(props: AppProps) {
     let date: Date;
     useEffect(() => {
       date = new Date();
-      console.log(date);
       const timeInSeconds: number = (date.getHours() * 3600) + (date.getMinutes() * 60) + date.getSeconds();
       const interval: NodeJS.Timeout = setInterval(() => {
         setTotalSeconds(() => {
