@@ -54,10 +54,21 @@
             }
         }
     }
+    div {
+        button {
+            background-color: #2b2b2b;
+            color: white;
+            border-radius: 1vh;
+            border-color: white;
+            border-style: solid;
+            font-size: 3vh;
+        }
+    }
 }
 .clock {
     font-size: 20vh;
     text-align: center;
+    margin: 1rem;
 }
 .session {
     font-size: 5vh;

@@ -13,6 +13,7 @@ export default function App(props: AppProps) {
     const [totalSeconds, setTotalSeconds] = useState<number>(0);
     const [currentSession, setCurrentSession] = useState<number>(workTime);
     const [working, setWorking] = useState<boolean>(true);
+    const [Paused, setPaused] = useState<boolean>(false);
     let date: Date;
     useEffect(() => {
       date = new Date();
@@ -20,9 +21,19 @@ export default function App(props: AppProps) {
       const interval: NodeJS.Timeout = setInterval(() => {
         setTotalSeconds(() => {
         const newTime = new Date();
-        const newTotalSeconds: number = (newTime.getHours() * 3600) + (newTime.getMinutes() * 60) + newTime.getSeconds();
-        const totalSeconds: number = newTotalSeconds - timeInSeconds;
-        return totalSeconds;
+        const newSeconds: number = (newTime.getHours() * 3600) + (newTime.getMinutes() * 60) + newTime.getSeconds();
+        const newTotalSeconds: number = newSeconds - timeInSeconds;
+        console.log(newTotalSeconds,timeInSeconds,newSeconds);
+        if (newTotalSeconds >= currentSession) {
+          if (working) {
+            setCurrentSession(restTime);
+            setWorking(false);
+          } else {
+            setCurrentSession(workTime);
+            setWorking(true);
+          }
+        }
+        return newTotalSeconds;
       });
     }, 1000);
     if (repeatsDone >= repeats) {
@@ -57,14 +68,15 @@ export default function App(props: AppProps) {
 
     return (
         <div>
-        <h1 className='clock'>
-            {hours > 0 ? hours : ''}
-            {hours > 0 ? ':' : ''}
-            {minutes > 9 ? '' : '0'}
-            {minutes}:{seconds > 9 ? '' : '0'}
-            {seconds}
-            <sup className='session'>{working ? 'Work Session' : 'Rest Session'}</sup>
-        </h1>
+          <h1 className='clock'>
+              {hours > 0 ? hours : ''}
+              {hours > 0 ? ':' : ''}
+              {minutes > 9 ? '' : '0'}
+              {minutes}:{seconds > 9 ? '' : '0'}
+              {seconds}
+              <sup className='session'>{working ? 'Work Session' : 'Rest Session'}</sup>
+          </h1>
+          <button>{Paused ? 'Unpause' : 'Pause'}</button>
         </div>
     );
 }
