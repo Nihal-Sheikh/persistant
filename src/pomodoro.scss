@@ -54,14 +54,21 @@
             }
         }
     }
-    div {
+    .clockContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         button {
-            background-color: #2b2b2b;
-            color: white;
-            border-radius: 1vh;
-            border-color: white;
-            border-style: solid;
+            background-color: #dddddd;
+            color: black;
             font-size: 3vh;
+            font-weight: 500;
+            border: #2b2b2b 0.1rem solid;
+            border-radius: 2vh;
+            padding: 0 1vh 0 1vh;
+            padding: 1vh 2vh;
+            margin: 1rem;
         }
     }
 }
