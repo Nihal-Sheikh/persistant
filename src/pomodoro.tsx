@@ -26,7 +26,7 @@ export default function App(props: AppProps) {
     date = new Date();
     const timeInSeconds: number =
       date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
-    const interval: NodeJS.Timeout = setInterval(() => {
+    const interval = setInterval(() => {
       setTotalSeconds(() => {
         if (Paused.current) {
           const d: Date = new Date();
