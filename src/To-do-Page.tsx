@@ -1,3 +1,4 @@
+"use client";
 import { useState, ChangeEvent, useEffect } from "react";
 function App() {
   const [tasks, setTasks] = useState<string[]>([]);
