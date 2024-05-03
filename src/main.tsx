@@ -1,9 +1,11 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
 import "./pomodoro.scss";
 import "./To-do.scss";
 import "./expenseTracker.scss";
 import "./weather.scss";
+import SignUp from "./signUp";
 import App from "./Homepage";
 import Focus from "./focusTab";
 import Todo from "./To-do-Page";
@@ -100,6 +102,20 @@ const router = createBrowserRouter([
     ),
   },
 ]);
+function detectColorScheme() {
+  let theme = "dark";
+  if (localStorage.getItem("theme")) {
+    if (localStorage.getItem("theme") === "light") {
+      theme = "light";
+    }
+  } else if (window.matchMedia) {
+    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      theme = "light";
+    }
+  }
+  document.documentElement.setAttribute("data-theme", theme);
+}
+detectColorScheme();
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />

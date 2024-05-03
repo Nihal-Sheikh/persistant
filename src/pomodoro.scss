@@ -1,3 +1,27 @@
+:root {
+  --main-background-color-primary: #eaeaea;
+  --main-color-primary: black;
+  --navbar-color-primary: #dedede;
+  --main-background-color-secondary: #2b2b2b;
+  --main-color-secondary: white;
+  --navbar-color-secondary: black;
+}
+[data-theme="dark"] {
+  --main-background-color-primary: #2b2b2b;
+  --main-color-primary: white;
+  --navbar-color-primary: black;
+  --main-background-color-secondary: #eaeaea;
+  --main-color-secondary: black;
+  --navbar-color-secondary: #dedede;
+}
+[data-theme="light"] {
+  --main-background-color-primary: #eaeaea;
+  --main-color-primary: black;
+  --navbar-color-primary: #dedede;
+  --main-background-color-secondary: #2b2b2b;
+  --main-color-secondary: white;
+  --navbar-color-secondary: black;
+}
 .repeatHeader {
   text-align: center;
   font-size: 4vh;
@@ -9,10 +33,10 @@
   margin: 1rem 0 1rem 0;
   position: relative;
   padding: 0;
-  background-color: #2b2b2b;
-  color: white;
+  background-color: var(--navbar-color-primary);
+  color: var(--main-color-primary);
   font-size: 3vh;
-  border: white 0.1rem solid;
+  border: var(--main-color-primary) 0.15rem solid;
   border-radius: 2vh;
   padding: 1vh 0;
   width: 100%;
@@ -22,7 +46,7 @@
     width: 100%;
     display: flex;
     border-radius: 2vh;
-    border: white 0.1rem solid;
+    border: var(--main-color-primary) 0.15rem solid;
     .pomodoroHeader {
       padding: 1% 1% 1% 1%;
       width: 40%;
@@ -33,7 +57,6 @@
     div {
       display: flex;
       width: 30%;
-      border-left: white 0.1rem solid;
       padding: 1% 1% 1% 1%;
       h1 {
         padding: 1% 1% 1% 1%;
@@ -43,12 +66,12 @@
         font-size: 2vh;
       }
       input {
-        background-color: #2b2b2b;
-        color: white;
+        background-color: var(--navbar-color-primary);
+        color: var(--main-color-primary);
         height: 80%;
         font-size: 3vh;
         width: 50%;
-        border: white 0.1rem solid;
+        border: var(--main-color-primary) 0.15rem solid;
         border-radius: min(3vh, 3vw);
         padding-left: 1vh;
       }
@@ -60,20 +83,17 @@
     justify-content: center;
     align-items: center;
     button {
-      background-color: #dddddd;
-      color: black;
+      background-color: var(--main-background-color-secondary);
+      color: var(--main-color-secondary);
       font-size: 3vh;
       font-weight: 500;
-      border: #2b2b2b 0.1rem solid;
+      border: var(--main-color-secondary) 0.15rem solid;
       border-radius: 2vh;
       padding: 0 1vh 0 1vh;
       padding: 1vh 2vh;
       margin: 1rem;
       :active {
         transform: scale(0.7);
-        transition: color 0.5s, background-color 0.5s;
-        background-color: rgb(223, 223, 223);
-        color: #353535;
       }
     }
   }

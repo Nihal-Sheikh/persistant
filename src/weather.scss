@@ -1,3 +1,17 @@
+:root {
+  --main-background-color: #eaeaea;
+  --navbar-color: #dedede;
+}
+$main-background-color-dark: #2b2b2b;
+$navbar-color-dark: black;
+[data-theme="dark"] {
+  --main-background-color: #2b2b2b;
+  --navbar-color: black;
+}
+[data-theme="light"] {
+  --main-background-color: #eaeaea;
+  --navbar-color: #dedede;
+}
 .weather {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -7,9 +21,9 @@
     margin: 0;
     width: 100%;
     height: 100%;
-    background-color: #34343e;
     border-radius: 2vh;
-    border-color: rgb(184, 188, 189);
+    border-color: var(--navbar-color);
+    background-color: var(--navbar-color);
     border-style: solid;
     border-width: 0.5vh;
     background-repeat: no-repeat;
@@ -50,7 +64,8 @@
     width: 100%;
     height: 100%;
     z-index: 0;
-    background-color: #00000053;
+    background-color: var(--main-background-color);
+    opacity: 0.5;
     border-radius: 2vh;
   }
 }

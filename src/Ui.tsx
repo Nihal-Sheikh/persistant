@@ -80,8 +80,7 @@ export default function Ui() {
           >
             {" "}
             <h1>
-              <span>To-Do</span>{" "}
-              <img src="./Todo.png" id="icon" alt="icon"></img>
+              <span>To-Do</span> <i className="fa fa-check-square-o"></i>
               <div className="Uipseudo-element"></div>
             </h1>
           </Link>
