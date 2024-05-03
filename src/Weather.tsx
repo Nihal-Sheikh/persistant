@@ -93,7 +93,9 @@ export default function WeatherPage() {
               {currentWeather?.current?.precip_mm}mm
             </h2>
             <h1 className="header tempsub">Wind Speed: </h1>
-            <h2>{currentWeather?.current?.wind_kph}</h2>
+            <h2 className="TemperatureHeaders">
+              {currentWeather?.current?.wind_kph}
+            </h2>
           </div>
         </figure>
       </figure>
