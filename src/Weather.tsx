@@ -94,7 +94,7 @@ export default function WeatherPage() {
             </h2>
             <h1 className="header tempsub">Wind Speed: </h1>
             <h2 className="TemperatureHeaders">
-              {currentWeather?.current?.wind_kph}
+              {currentWeather?.current?.wind_kph}kph
             </h2>
           </div>
         </figure>
