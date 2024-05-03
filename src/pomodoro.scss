@@ -1,102 +1,108 @@
 .repeatHeader {
-    text-align: center;
-    font-size: 4vh;
-    line-height: 3vh;
-    margin: 2.5vh 0 1vh 0;
-    padding: 0;
+  text-align: center;
+  font-size: 4vh;
+  line-height: 3vh;
+  margin: 2.5vh 0 1vh 0;
+  padding: 0;
 }
 .repeat {
-    margin: 1rem 0 1rem 0;
-    position: relative;
-    padding: 0;
-    background-color: #2b2b2b;
-    color: white;
-    font-size: 3vh;
-    border: white 0.1rem solid;
-    border-radius: 2vh;
-    padding: 1vh 0;
-    width: 100%;
+  margin: 1rem 0 1rem 0;
+  position: relative;
+  padding: 0;
+  background-color: #2b2b2b;
+  color: white;
+  font-size: 3vh;
+  border: white 0.1rem solid;
+  border-radius: 2vh;
+  padding: 1vh 0;
+  width: 100%;
 }
 .pomodoro {
-    .pomodoroContainer {
-        width: 100%;
-        display: flex;
-        border-radius: 2vh;
-        border: white 0.1rem solid;
-        .pomodoroHeader{
-            padding: 1% 1% 1% 1%;
-            width: 40%;
-            display: flex;
-            align-items: center;
-            font-size: 2vh;
-        }
-        div {
-            display: flex;
-            width: 30%;
-            border-left: white 0.1rem solid;
-            padding: 1% 1% 1% 1%;
-            h1 {
-                padding: 1% 1% 1% 1%;
-                width: 40%;
-                display: flex;
-                align-items: center;
-                font-size: 2vh;
-            }
-            input {
-                background-color: #2b2b2b;
-                color: white;
-                height: 80%;
-                font-size: 3vh;
-                width: 50%;
-                border: white 0.1rem solid;
-                border-radius: min(3vh,3vw);
-                padding-left: 1vh;
-            }
-        }
+  .pomodoroContainer {
+    width: 100%;
+    display: flex;
+    border-radius: 2vh;
+    border: white 0.1rem solid;
+    .pomodoroHeader {
+      padding: 1% 1% 1% 1%;
+      width: 40%;
+      display: flex;
+      align-items: center;
+      font-size: 2vh;
     }
-    .clockContainer {
+    div {
+      display: flex;
+      width: 30%;
+      border-left: white 0.1rem solid;
+      padding: 1% 1% 1% 1%;
+      h1 {
+        padding: 1% 1% 1% 1%;
+        width: 40%;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        button {
-            background-color: #dddddd;
-            color: black;
-            font-size: 3vh;
-            font-weight: 500;
-            border: #2b2b2b 0.1rem solid;
-            border-radius: 2vh;
-            padding: 0 1vh 0 1vh;
-            padding: 1vh 2vh;
-            margin: 1rem;
-        }
+        font-size: 2vh;
+      }
+      input {
+        background-color: #2b2b2b;
+        color: white;
+        height: 80%;
+        font-size: 3vh;
+        width: 50%;
+        border: white 0.1rem solid;
+        border-radius: min(3vh, 3vw);
+        padding-left: 1vh;
+      }
     }
+  }
+  .clockContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    button {
+      background-color: #dddddd;
+      color: black;
+      font-size: 3vh;
+      font-weight: 500;
+      border: #2b2b2b 0.1rem solid;
+      border-radius: 2vh;
+      padding: 0 1vh 0 1vh;
+      padding: 1vh 2vh;
+      margin: 1rem;
+      :active {
+        transform: scale(0.7);
+        transition: color 0.5s, background-color 0.5s;
+        background-color: rgb(223, 223, 223);
+        color: #353535;
+      }
+    }
+  }
 }
 .clock {
-    font-size: 20vh;
-    text-align: center;
-    margin: 1rem;
+  font-size: 20vh;
+  text-align: center;
+  margin: 1rem;
 }
 .session {
-    font-size: 5vh;
+  font-size: 5vh;
 }
 @media (max-aspect-ratio: 1/1) {
-    .pomodoro {
-        .pomodoroContainer {
-            div {
-                flex-direction: column;
-                input {
-                    width: unset;
-                    height: 17%;
-                }
-            }
+  .pomodoro {
+    .pomodoroContainer {
+      div {
+        flex-direction: column;
+        input {
+          width: unset;
+          height: 17%;
+        }
+      }
     }
     .clock {
-        font-size: 15vw;
-        text-align: center;
+      font-size: 15vw;
+      text-align: center;
     }
     .session {
-        font-size: 3.5vw;
+      font-size: 3.5vw;
     }
-    }
+  }
 }

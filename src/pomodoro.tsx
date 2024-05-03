@@ -113,7 +113,7 @@ export default function App(props: AppProps) {
         </sup>
       </h1>
       <button type="button" onClick={() => handlePause()} className="pause">
-        {Paused.current ? "Unpause" : "Pause"}
+        Paused
       </button>
     </div>
   );
