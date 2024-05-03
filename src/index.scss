@@ -17,38 +17,59 @@ body {
 button:active {
   transform: scale(0.98);
 }
-nav {
-  z-index: 100;
-  top: 0;
+header {
   position: fixed;
+  top: 0;
   width: 100vw;
-  background-color: black;
-  padding: 1.3vh 0 1.3vh 0;
-  box-shadow: 2px 2px 2px 2px rgba($color: #000000, $alpha: 0.1);
-  display: flex;
-  justify-content: space-between;
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    font-size: 3vh;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+  nav {
     margin: 0;
-    li {
-      margin: 0 4vh 0 0;
-      h1 {
-        margin: 0;
+    top: 0;
+    background-color: black;
+    padding: 1.3vh 0 1.3vh 0;
+    width: 100%;
+    box-shadow: 2px 2px 2px 2px rgba($color: #000000, $alpha: 0.1);
+    display: flex;
+    justify-content: space-between;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      font-size: 3vh;
+      margin: 0;
+      .UIListItem {
+        margin: 0 2vh 0 0;
+        h1 {
+          margin: 0;
+        }
       }
     }
+    h1 {
+      font-size: 3vh;
+      padding: 0;
+      margin: 0 0 0 2vh;
+      font-weight: 400;
+    }
   }
-  h1 {
-    font-size: 3vh;
-    padding: 0;
-    margin: 0 0 0 2vh;
-    font-weight: 400;
+  #HambergerMenu {
+    display: none;
+    #HambergerContainer {
+      flex-direction: column;
+      .Hamberger {
+        border-radius: 100vh;
+        width: 3.8vh;
+        height: 0.4vh;
+        background-color: white;
+        margin: 0.4vh 0 0.4vh 2vh;
+        display: inherit;
+      }
+    }
   }
 }
 main {
@@ -71,20 +92,18 @@ p,
   padding: 0.5vh;
   font-size: 2vh;
 }
+.links {
+  display: block;
+  text-align: center;
+  position: relative;
+  color: #d19af8;
+  margin: 0;
+  padding: 0;
+  font-size: 3vh;
+  width: 100%;
+}
 section {
   padding: 1rem 7% 1rem 7%;
-}
-.HambergerContainer {
-  display: none;
-  flex-direction: column;
-}
-.Hamberger {
-  border-radius: 100vh;
-  width: 3.8vh;
-  height: 0.4vh;
-  background-color: white;
-  margin: 0.4vh 0 0.4vh 2vh;
-  display: inherit;
 }
 #icon {
   width: 2.5vh;
@@ -202,13 +221,16 @@ section {
   .UIListItem span {
     display: none;
   }
-  .HambergerContainer {
-    display: flex;
+  header nav #HambergerMenu {
+    display: block;
+    #HambergerContainer {
+      display: flex;
+    }
   }
   nav .logo {
     display: none;
   }
-  nav ul li {
+  nav ul .UIListItem {
     margin: 0 2vh 0 1vh;
   }
   .pictureContainer {
