@@ -7,7 +7,10 @@ function App() {
   const [editIndex, setEditIndex] = useState(-1);
   // const [usingTImer, setUsingTimer] = useState(false)
   // const [timerIndex, setTimerIndex] = useState(-1)
-  if (localStorage.getItem("tasks") && tasks.length === 0) {
+  if (
+    localStorage.getItem("tasks") &&
+    tasks.length != JSON.parse(localStorage.getItem("tasks")!).length
+  ) {
     setTasks(JSON.parse(localStorage.getItem("tasks")!));
   }
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
