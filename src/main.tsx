@@ -1,11 +1,11 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
+// import { onAuthStateChanged } from "firebase/auth";
 import "./pomodoro.scss";
 import "./To-do.scss";
 import "./expenseTracker.scss";
 import "./weather.scss";
-import SignUp from "./signUp";
+// import SignUp from "./signUp";
 import App from "./Homepage";
 import Focus from "./focusTab";
 import Todo from "./To-do-Page";
