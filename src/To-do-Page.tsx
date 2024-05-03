@@ -2,6 +2,7 @@
 import { useState, ChangeEvent, useEffect } from "react";
 function App() {
   const [tasks, setTasks] = useState<string[]>([]);
+  const [loaded, setLoaded] = useState(false);
   const [newTask, setNewTask] = useState("");
   const [editing, setEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(-1);
@@ -9,7 +10,8 @@ function App() {
   // const [timerIndex, setTimerIndex] = useState(-1)
   if (
     localStorage.getItem("tasks") &&
-    tasks.length != JSON.parse(localStorage.getItem("tasks")!).length
+    tasks.length != JSON.parse(localStorage.getItem("tasks")!).length &&
+    !loaded
   ) {
     setTasks(JSON.parse(localStorage.getItem("tasks")!));
   }
@@ -83,6 +85,7 @@ function App() {
     }
   }
   useEffect(() => {
+    setLoaded(true);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
   return (
