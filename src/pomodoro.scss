@@ -2,6 +2,7 @@
   --main-background-color-primary: #eaeaea;
   --main-color-primary: black;
   --navbar-color-primary: #dedede;
+  --form-color: #dddddd;
   --main-background-color-secondary: #2b2b2b;
   --main-color-secondary: white;
   --navbar-color-secondary: black;
@@ -10,6 +11,7 @@
   --main-background-color-primary: #2b2b2b;
   --main-color-primary: white;
   --navbar-color-primary: black;
+  --form-color: #222222;
   --main-background-color-secondary: #eaeaea;
   --main-color-secondary: black;
   --navbar-color-secondary: #dedede;
@@ -33,7 +35,7 @@
   margin: 1rem 0 1rem 0;
   position: relative;
   padding: 0;
-  background-color: var(--navbar-color-primary);
+  background-color: var(--form-color);
   color: var(--main-color-primary);
   font-size: 3vh;
   border: var(--main-color-primary) 0.15rem solid;
@@ -66,7 +68,7 @@
         font-size: 2vh;
       }
       input {
-        background-color: var(--navbar-color-primary);
+        background-color: var(--form-color);
         color: var(--main-color-primary);
         height: 80%;
         font-size: 3vh;
