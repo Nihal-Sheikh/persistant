@@ -20,7 +20,7 @@ export default function Ui() {
           const longitude = position.coords.longitude;
 
           const response = await fetch(
-            `http://api.weatherapi.com/v1/current.json?key=5554fa749437431fa7a125354240802&q=${latitude},${longitude}&aqi=no`
+            `https://api.weatherapi.com/v1/current.json?key=5554fa749437431fa7a125354240802&q=${latitude},${longitude}&aqi=no`
           );
           const data = await response.json();
           setCurrentWeather(`${data.current.temp_c}°C`);
