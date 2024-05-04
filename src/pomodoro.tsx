@@ -18,7 +18,22 @@ export default function App(props: AppProps) {
   const resumeTimeinSeconds = useRef<number>(0);
   const totalPauseTimeinSeconds = useRef<number>(0);
   const modifier = useRef<number>(1);
+  const [loaded, setLoaded] = useState(true);
+  if (localStorage.getItem("timeInSeconds") !== "0" && loaded) {
+    console.log(
+      localStorage.getItem("repeatsDone"),
+      localStorage.getItem("working"),
+      localStorage.getItem("currentSession")
+    );
+    setRepeatsDone(Number(localStorage.getItem("repeatsDone")!));
+    setWorking(localStorage.getItem("working") === "true");
+    setCurrentSession(Number(localStorage.getItem("currentSession")!));
+    setLoaded(false);
+    console.log("Hey", currentSession, working, repeatsDone);
+  }
+  console.log(currentSession, working, repeatsDone);
   let date: Date;
+
   useEffect(() => {
     if (totalTime === 0) {
       return;
@@ -26,6 +41,12 @@ export default function App(props: AppProps) {
     date = new Date();
     const timeInSeconds: number =
       date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
+    let minus = 0;
+    if (localStorage.getItem("timeInSeconds")) {
+      if (Number(localStorage.getItem("timeInSeconds")) < currentSession) {
+        minus = Number(localStorage.getItem("timeInSeconds"));
+      }
+    }
     const interval = setInterval(() => {
       setTotalSeconds(() => {
         if (Paused.current) {
@@ -45,8 +66,9 @@ export default function App(props: AppProps) {
           newTime.getMinutes() * 60 +
           newTime.getSeconds();
         const newTotalSeconds: number =
-          newSeconds - (timeInSeconds + totalPauseTimeinSeconds.current);
-
+          newSeconds +
+          minus -
+          (timeInSeconds + totalPauseTimeinSeconds.current);
         if (newTotalSeconds >= currentSession) {
           if (working) {
             setCurrentSession(restTime);
@@ -55,6 +77,8 @@ export default function App(props: AppProps) {
             setCurrentSession(workTime);
             setWorking(true);
           }
+          localStorage.setItem("working", String(working));
+          localStorage.setItem("currentSession", String(currentSession));
         }
         return newTotalSeconds;
       });
@@ -67,8 +91,14 @@ export default function App(props: AppProps) {
   }, [repeatsDone]);
   useEffect(() => {
     if (repeatsDone < repeats) {
-      setTotalSeconds(0);
-      setRepeatsDone((prevRepeatsDone) => prevRepeatsDone + 1);
+      if (
+        repeatsDone != Number(localStorage.getItem("repeatsDone")) &&
+        working != Boolean(localStorage.getItem("working"))
+      ) {
+        setTotalSeconds(0);
+        setRepeatsDone((prevRepeatsDone) => prevRepeatsDone + 1);
+        localStorage.setItem("repeatsDone", String(repeatsDone + 1));
+      }
     }
   }, [working, currentSession]);
   useEffect(() => {
@@ -76,7 +106,16 @@ export default function App(props: AppProps) {
     setRepeatsDone(0);
     setWorking(true);
     setCurrentSession(workTime);
-  }, [props.sessionTime, props.restTime, props.repeatCount]);
+  }, [
+    Number(props.sessionTime),
+    Number(props.restTime),
+    Number(props.repeatCount),
+  ]);
+  useEffect(() => {
+    if (totalSeconds > 2) {
+      localStorage.setItem("timeInSeconds", String(totalSeconds));
+    }
+  }, [totalSeconds]);
   function handlePause() {
     Paused.current = !Paused.current;
     if (Paused.current) {
@@ -113,7 +152,7 @@ export default function App(props: AppProps) {
         </sup>
       </h1>
       <button type="button" onClick={() => handlePause()} className="pause">
-        Pause
+        Paused
       </button>
     </div>
   );
