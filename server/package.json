@@ -2,15 +2,21 @@
   "name": "persistant",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
-    "test": "node ./index.ts",
-    "start": "node ./index.ts",
-    "dev" : "nodemon ./index.ts"
+    "test": "node ./index.js",
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js"
   },
   "author": "Nihal Sheikh",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescipt": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12"
   }
 }
