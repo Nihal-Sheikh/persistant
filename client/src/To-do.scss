@@ -40,6 +40,7 @@
   button {
     background-color: var(--navbar-color-secondary);
     color: var(--main-color-secondary);
+    border: var(--navbar-color-secondary) 0.15rem solid;
     font-size: 3vh;
     font-weight: 500;
     border-radius: 2vh;
@@ -60,8 +61,8 @@
       padding: 1vh;
       list-style: none;
       font-size: 3vh;
-      border-bottom: var(--main-color-primary) 0.15rem solid;
-      border-top: var(--main-color-primary) 0.15rem solid;
+      border-bottom: var(--main-color-primary) 0.1rem solid;
+      border-top: var(--main-color-primary) 0.1rem solid;
       margin: 0;
       display: flex;
       justify-content: space-between;
