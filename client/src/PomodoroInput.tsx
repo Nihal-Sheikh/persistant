@@ -15,7 +15,7 @@ export default function PomodoroInput() {
     setRestTime(Number(localStorage.getItem("restTime")!));
     setRepeatCount(Number(localStorage.getItem("repeatCount")!));
     setLoaded(false);
-  }
+  }// loads last time if saved
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "sessionTime") {
@@ -25,12 +25,12 @@ export default function PomodoroInput() {
     } else if (name === "repeat") {
       setRepeatCount(Number(value));
     }
-  };
+  }; //handles input on the form the changing the appropriate values 
   useEffect(() => {
     localStorage.setItem("sessionTime", String(sessionTime));
     localStorage.setItem("restTime", String(restTime));
     localStorage.setItem("repeatCount", String(repeatCount));
-  }, [sessionTime, restTime, repeatCount]);
+  }, [sessionTime, restTime, repeatCount]); // saves the changed values
   return (
     <>
       <article className="pomodoroContainer">
@@ -77,7 +77,7 @@ export default function PomodoroInput() {
       <Pomodoro
         sessionTime={sessionTime}
         restTime={restTime}
-        repeatCount={repeatCount}
+        repeatCount={repeatCount} //passes on props
       />
     </>
   );

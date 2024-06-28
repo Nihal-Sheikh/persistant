@@ -14,25 +14,26 @@ function App() {
     !loaded
   ) {
     setTasks(JSON.parse(localStorage.getItem("tasks")!));
-  }
+  } //loads tasks if saved
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setNewTask(e.target.value);
-  }
+  } //handles change in input forms and coverts it to text
   async function addTask() {
     const newTasks = [...tasks, newTask];
     setNewTask("");
     setTasks(newTasks);
-  }
+  } //adds task if the user decides
   function deleteTask(index: number) {
     const newTasks = [...tasks];
     newTasks.splice(index, 1);
     setTasks(newTasks);
-  }
+  } //deletes task if the user decides
   function toggleEditMode(index: number) {
     setEditIndex(index);
     setNewTask(`${index + 1}. ${tasks[index]}`);
     setEditing(!editing);
-  }
+  } //changes from submit mode to edit mode
+  
   function editTask() {
     if (newTask && editIndex >= 0) {
       const newTasks = [...tasks];
@@ -65,7 +66,7 @@ function App() {
       setNewTask("");
     }
     setEditing(false);
-  }
+  } //edits task
   function moveTaskUp(index: number) {
     if (index > 0) {
       const newTasks = [...tasks];
@@ -84,10 +85,11 @@ function App() {
       setTasks(newTasks);
     }
   }
+  //moves task
   useEffect(() => {
     setLoaded(true);
     localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  }, [tasks]); //saves task if the user decides
   return (
     <section>
       <h1 className="header">Discover to-do with persistant</h1>
@@ -128,7 +130,7 @@ function App() {
               <span>
                 {index + 1}. {task}
               </span>
-              <div>
+              <div className="buttonContainer">
                 <button type="button" onClick={() => deleteTask(index)}>
                   .<i className="fa fa-trash"></i>
                 </button>

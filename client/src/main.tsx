@@ -114,7 +114,7 @@ function detectColorScheme() {
     }
   }
   document.documentElement.setAttribute("data-theme", theme);
-}
+}//gets the theme and writes it to the document
 detectColorScheme();
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

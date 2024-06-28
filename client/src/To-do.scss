@@ -1,27 +1,4 @@
-:root {
-  --main-background-color-primary: #eaeaea;
-  --main-color-primary: black;
-  --navbar-color-primary: #dedede;
-  --main-background-color-secondary: #2b2b2b;
-  --main-color-secondary: white;
-  --navbar-color-secondary: black;
-}
-[data-theme="dark"] {
-  --main-background-color-primary: #2b2b2b;
-  --main-color-primary: white;
-  --navbar-color-primary: black;
-  --main-background-color-secondary: #eaeaea;
-  --main-color-secondary: black;
-  --navbar-color-secondary: #dedede;
-}
-[data-theme="light"] {
-  --main-background-color-primary: #eaeaea;
-  --main-color-primary: black;
-  --navbar-color-primary: #dedede;
-  --main-background-color-secondary: #2b2b2b;
-  --main-color-secondary: white;
-  --navbar-color-secondary: black;
-}
+
 .setTask {
   display: flex;
   padding: 5vw;
@@ -70,11 +47,15 @@
         max-width: 70%;
         word-wrap: break-word;
       }
-      button {
+      .buttonContainer{
+        display: flex;
+        flex-direction: row;
+        button {
         border: none;
         color: var(--main-color-primary);
         background-color: var(--main-background-color-primary);
         border-radius: 2vh;
+        height: fit-content;
         margin: 0 0.3vw 0 0.3vw;
         font-size: 0;
         i {
@@ -83,7 +64,7 @@
         :active {
           transform: scale(0.87);
         }
-      }
+      }}
     }
     .selected {
       background-color: #001c3d;

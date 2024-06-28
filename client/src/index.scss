@@ -5,6 +5,8 @@
   --main-background-color-secondary: #2b2b2b;
   --main-color-secondary: white;
   --navbar-color-secondary: black;
+  --button-color-primary: #009ef9;
+  --button-color-secondary: #000732;
   --max: 999999999;
 }
 [data-theme="dark"] {
@@ -14,6 +16,8 @@
   --main-background-color-secondary: #eaeaea;
   --main-color-secondary: black;
   --navbar-color-secondary: #dedede;
+  --button-color-primary: #000732;
+  --button-color-secondary: #009ef9;
 }
 [data-theme="light"] {
   --main-background-color-primary: #ffffff;
@@ -22,12 +26,14 @@
   --main-background-color-secondary: #2b2b2b;
   --main-color-secondary: white;
   --navbar-color-secondary: black;
+  --button-color-primary: #009ef9;
+  --button-color-secondary: #000732;
 }
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "Inter", Impact, Haettenschweiler, "Arial Narrow Bold",
+  font-family: "Inter", "Arial",
     sans-serif;
   font-weight: 400;
 }
@@ -58,6 +64,7 @@ header {
     box-shadow: 2px 2px 2px 2px rgba($color: #505050, $alpha: 0.1);
     display: flex;
     justify-content: space-between;
+    z-index: var(--max);
     a {
       color: var(--main-color-primary);
       text-decoration: none;
@@ -156,7 +163,8 @@ section {
     grid-row: span 1;
     grid-column: span 1;
   }
-  article {
+  a {
+    color: var(--main-color-primary);
     position: relative;
     width: 100%;
     height: 100%;
@@ -174,7 +182,7 @@ section {
       top: 0;
       width: 100%;
       z-index: 10;
-      background-color: #cacacab0;
+      background-color: var(--main-background-color-primary);
       transition: inherit;
       border-bottom: white 0.5vh solid;
       h1 {
@@ -289,5 +297,29 @@ section {
       padding-left: 0;
       width: 100%;
     }
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {  
+    --main-background-color-primary: #ffffff;
+    --main-color-primary: black;
+    --navbar-color-primary: #dedede;
+    --main-background-color-secondary: #2b2b2b;
+    --main-color-secondary: white;
+    --navbar-color-secondary: black;
+    --button-color-primary: #009ef9;
+    --button-color-secondary: #000732;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+  --main-background-color-primary: #2b2b2b;
+  --main-color-primary: white;
+  --navbar-color-primary: black;
+  --main-background-color-secondary: #eaeaea;
+  --main-color-secondary: black;
+  --navbar-color-secondary: #dedede;
+  --button-color-primary: #000732;
+  --button-color-secondary: #009ef9;
   }
 }

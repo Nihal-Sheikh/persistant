@@ -46,7 +46,7 @@ export default function WeatherPage() {
     }
 
     getWeather();
-  }, []);
+  }, []);//fethces weather
 
   return (
     <section>

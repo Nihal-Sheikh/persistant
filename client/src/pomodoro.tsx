@@ -5,15 +5,15 @@ interface AppProps {
   repeatCount: number;
 }
 export default function App(props: AppProps) {
-  const restTime: number = props.restTime * 60;
-  const workTime: number = props.sessionTime * 60;
-  const repeats: number = props.repeatCount * 2;
-  const totalTime = (props.sessionTime + props.restTime) * props.repeatCount;
-  const [repeatsDone, setRepeatsDone] = useState<number>(0);
-  const [totalSeconds, setTotalSeconds] = useState<number>(0);
-  const [currentSession, setCurrentSession] = useState<number>(workTime);
+  const restTime: number = props.restTime * 60; //converts rest time to seconds
+  const workTime: number = props.sessionTime * 60; //converts work time to seconds
+  const repeats: number = props.repeatCount * 2; // dulicates the repeats to take the fact that there will two sessions(worktime and resttime into account)
+  const totalTime = (props.sessionTime + props.restTime) * props.repeatCount; //calculates total time
+  const [repeatsDone, setRepeatsDone] = useState<number>(0); //repeats done
+  const [totalSeconds, setTotalSeconds] = useState<number>(0); //totalseconds on for
+  const [currentSession, setCurrentSession] = useState<number>(workTime); //how many minutes will the current session last
   const [working, setWorking] = useState<boolean>(true);
-  const Paused = useRef<boolean>(false);
+  const Paused = useRef<boolean>(false); //paused or not
   const pauseTimeinSeconds = useRef<number>(0);
   const resumeTimeinSeconds = useRef<number>(0);
   const totalPauseTimeinSeconds = useRef<number>(0);
@@ -23,9 +23,9 @@ export default function App(props: AppProps) {
     if (totalTime === 0) {
       return;
     }
-    date = new Date();
+    date = new Date(); // captures current time
     const timeInSeconds: number =
-      date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
+      date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();// last captures time
     const interval = setInterval(() => {
       setTotalSeconds(() => {
         if (Paused.current) {
