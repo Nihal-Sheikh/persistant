@@ -1,21 +1,21 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import { onAuthStateChanged } from "firebase/auth";
-import "./pomodoro.scss";
-import "./To-do.scss";
-import "./expenseTracker.scss";
-import "./weather.scss";
+import "./Utils/Pomodoro/pomodoro.scss";
+import "./Utils/To-do/To-do.scss";
+import "./Utils/Expense-Tracker/expenseTracker.scss";
+import "./Utils/Weather/weather.scss";
 // import SignUp from "./signUp";
 import App from "./Homepage";
 import Focus from "./focusTab";
-import Todo from "./To-do-Page";
+import Todo from "./to-do.tsx";
 import ExpenseTracker from "./expenseTracker";
-import Weather from "./Weather";
+import Weather from "./weather.tsx";
 import Contact from "./contact";
 import NotFound from "./404.tsx";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
-import Ui from "./Ui.tsx";
+import Ui from "./UI.tsx";
 const router = createBrowserRouter([
   {
     path: "/",

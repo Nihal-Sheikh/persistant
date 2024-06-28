@@ -1,120 +1,84 @@
-import { useState, useEffect, useRef } from "react";
-interface AppProps {
-  restTime: number;
-  sessionTime: number;
-  repeatCount: number;
-}
-export default function App(props: AppProps) {
-  const restTime: number = props.restTime * 60; //converts rest time to seconds
-  const workTime: number = props.sessionTime * 60; //converts work time to seconds
-  const repeats: number = props.repeatCount * 2; // dulicates the repeats to take the fact that there will two sessions(worktime and resttime into account)
-  const totalTime = (props.sessionTime + props.restTime) * props.repeatCount; //calculates total time
-  const [repeatsDone, setRepeatsDone] = useState<number>(0); //repeats done
-  const [totalSeconds, setTotalSeconds] = useState<number>(0); //totalseconds on for
-  const [currentSession, setCurrentSession] = useState<number>(workTime); //how many minutes will the current session last
-  const [working, setWorking] = useState<boolean>(true);
-  const Paused = useRef<boolean>(false); //paused or not
-  const pauseTimeinSeconds = useRef<number>(0);
-  const resumeTimeinSeconds = useRef<number>(0);
-  const totalPauseTimeinSeconds = useRef<number>(0);
-  const modifier = useRef<number>(1);
-  let date: Date;
+import { ChangeEvent, useState, useEffect } from "react";
+import Pomodoro from "./Utils/Weather/pomodoroClock";
+export default function PomodoroInput() {
+  const [sessionTime, setSessionTime] = useState(0);
+  const [restTime, setRestTime] = useState(0);
+  const [repeatCount, setRepeatCount] = useState(1);
+  const [loaded, setLoaded] = useState(true);
+  if (
+    localStorage.getItem("sessionTime") &&
+    localStorage.getItem("restTime") &&
+    localStorage.getItem("repeatCount") &&
+    loaded
+  ) {
+    setSessionTime(Number(localStorage.getItem("sessionTime")!));
+    setRestTime(Number(localStorage.getItem("restTime")!));
+    setRepeatCount(Number(localStorage.getItem("repeatCount")!));
+    setLoaded(false);
+  }// loads last time if saved
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    if (name === "sessionTime") {
+      setSessionTime(Number(value));
+    } else if (name === "restTime") {
+      setRestTime(Number(value));
+    } else if (name === "repeat") {
+      setRepeatCount(Number(value));
+    }
+  }; //handles input on the form the changing the appropriate values 
   useEffect(() => {
-    if (totalTime === 0) {
-      return;
-    }
-    date = new Date(); // captures current time
-    const timeInSeconds: number =
-      date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();// last captures time
-    const interval = setInterval(() => {
-      setTotalSeconds(() => {
-        if (Paused.current) {
-          const d: Date = new Date();
-          resumeTimeinSeconds.current =
-            d.getHours() * 3600 +
-            d.getMinutes() * 60 +
-            d.getSeconds() +
-            modifier.current;
-          totalPauseTimeinSeconds.current =
-            resumeTimeinSeconds.current - pauseTimeinSeconds.current;
-        }
-
-        const newTime = new Date();
-        const newSeconds: number =
-          newTime.getHours() * 3600 +
-          newTime.getMinutes() * 60 +
-          newTime.getSeconds();
-        const newTotalSeconds: number =
-          newSeconds - (timeInSeconds + totalPauseTimeinSeconds.current);
-
-        if (newTotalSeconds >= currentSession) {
-          if (working) {
-            setCurrentSession(restTime);
-            setWorking(false);
-          } else {
-            setCurrentSession(workTime);
-            setWorking(true);
-          }
-        }
-        return newTotalSeconds;
-      });
-    }, 1000);
-    if (repeatsDone >= repeats) {
-      clearInterval(interval);
-    }
-
-    return () => clearInterval(interval);
-  }, [repeatsDone]);
-  useEffect(() => {
-    if (repeatsDone < repeats) {
-      setTotalSeconds(0);
-      setRepeatsDone((prevRepeatsDone) => prevRepeatsDone + 1);
-    }
-  }, [working, currentSession]);
-  useEffect(() => {
-    setTotalSeconds(0);
-    setRepeatsDone(0);
-    setWorking(true);
-    setCurrentSession(workTime);
-  }, [props.sessionTime, props.restTime, props.repeatCount]);
-  function handlePause() {
-    Paused.current = !Paused.current;
-    if (Paused.current) {
-      const d = new Date();
-      pauseTimeinSeconds.current =
-        d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
-    } else {
-      modifier.current =
-        resumeTimeinSeconds.current - pauseTimeinSeconds.current;
-    }
-  }
-  const seconds: number = totalSeconds % 60;
-  const minutes: number = Math.floor(totalSeconds / 60) % 60;
-  const hours: number = Math.floor(totalSeconds / 3600);
-  if (props.sessionTime === 0) {
-    return <></>;
-  } else if (totalTime > 480) {
-    window.alert(
-      "Total time should be less than 8 hours. We do not allow nor encourage overtime"
-    );
-    return <></>;
-  }
-
+    localStorage.setItem("sessionTime", String(sessionTime));
+    localStorage.setItem("restTime", String(restTime));
+    localStorage.setItem("repeatCount", String(repeatCount));
+  }, [sessionTime, restTime, repeatCount]); // saves the changed values
   return (
-    <div className="clockContainer">
-      <h1 className="clock">
-        {hours > 0 ? hours : ""}
-        {hours > 0 ? ":" : ""}
-        {minutes > 9 ? "" : "0"}
-        {minutes}:{seconds > 9 ? "" : "0"}
-        {seconds}
-        <sup className="session">
-          {working ? "Work Session" : "Rest Session"}
-        </sup>
-      </h1>
-      <button type="button" onClick={() => handlePause()} className="pause">
-        Pause
-      </button>
-    </div>
+    <>
+      <article className="pomodoroContainer">
+        <h1 className="pomodoroHeader">
+          Select the amount of time in focus session and start
+        </h1>
+        <div className="timeSelection">
+          <h1 className="description">Time(in minutes)</h1>
+          <input
+            type="number"
+            name="sessionTime"
+            id="sessionTime"
+            placeholder="25"
+            value={sessionTime}
+            min={0}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="restSelection">
+          <h1 className="description">Rest(in minutes)</h1>
+          <input
+            type="number"
+            name="restTime"
+            id="restTime"
+            placeholder="5"
+            value={restTime}
+            min={0}
+            onChange={handleChange}
+          />
+        </div>
+      </article>
+      <h1 className="header repeatHeader">Times of repeat</h1>
+      <input
+        type="number"
+        name="repeat"
+        id="repeat"
+        className="repeat"
+        placeholder="Times of repeat"
+        value={repeatCount}
+        max="100"
+        min={1}
+        onChange={handleChange}
+      />
+      <Pomodoro
+        sessionTime={sessionTime}
+        restTime={restTime}
+        repeatCount={repeatCount} //passes on props
+      />
+    </>
   );
 }

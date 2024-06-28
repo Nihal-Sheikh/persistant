@@ -1,4 +1,4 @@
-import ExpenseTable from './expenseTrackerTable';
+import ExpenseTable from './Utils/Expense-Tracker/expenseTrackerTable.tsx';
 import { useState, useEffect, useRef } from "react";
 
 interface TransactionData {
