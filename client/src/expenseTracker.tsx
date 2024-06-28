@@ -1,4 +1,6 @@
+import PersistantFunctions from './Utils/PersistantFunctions.ts';
 import ExpenseTable from './Utils/Expense-Tracker/expenseTrackerTable.tsx';
+import Popup from './Utils/_Popup.tsx';
 import { useState, useEffect, useRef } from "react";
 
 interface TransactionData {
@@ -14,10 +16,56 @@ interface TransactionData {
 export default function ExpenseTracker() {
     const [loaded, setLoaded] = useState(false);
     const [shownAll, setShownAll] = useState(false);
-    const [popupOn, setPopupOn] = useState(false);
     const [transactionData, setTransactionData] = useState<TransactionData[]>([]);
     const resetRef = useRef<HTMLButtonElement>(null);
-
+    const transactionForm:JSX.Element = <form id="transactionForm">
+        <div className="incomeExpense">
+            <div>
+                <label className="description" htmlFor="income">Income</label>
+                <input type="radio" name="type" id="income" value="income" />
+            </div>
+            <div>
+                <label className="description" htmlFor="expense">Expense</label>
+                <input type="radio" name="type" id="expense" value="expense" defaultChecked />
+            </div>
+        </div>
+        <div className="textForms">
+            <label htmlFor="amount">Enter Amount</label>
+            <input name="amount" id="amount" className="bigInput" type="number" placeholder="amount" min={0} max={10000000000} required />
+            <label htmlFor="description">Type Description</label>
+            <input name="description" id="description" className="input" type="text" maxLength={32} placeholder="description" required />
+            <label htmlFor="comments">Type Comments (Optional)</label>
+            <input name="comments" id="comments" className="input" type="text" maxLength={32} placeholder="comments" />
+        </div>
+        <div className="categoryForm">
+            <label htmlFor="category">Category</label>
+            <select name="category" id="category">
+                <option value="Regular Income">Regular Income</option>
+                <option value="Rent & Bills">Rent & Bills</option>
+                <option value="Grocery">Grocery</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Travel">Travel</option>
+                <option value="Insurance">Insurance</option>
+                <option value="Law">Law</option>
+                <option value="Health">Health</option>
+                <option value="Savings">Savings</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debt">Debt</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div className="plannedForm">
+            <div>
+                <label htmlFor="planned">Planned?</label>
+                <input type="checkbox" name="planned" id="planned" />
+            </div>
+        </div>
+        <div className="submitForm">
+            <button className='formSubmit' type="submit">Add Transaction</button>
+        </div>
+        <button ref={resetRef} id="reset" type="reset" style={{ display: 'none' }}>Hi</button>
+    </form>;
     let TaskId = 1;
     const date = new Date();
     const DayId = `${date.getFullYear()}`.slice(2, 4) + `${(date.getMonth() + 1).toString().padStart(2, '0')}` + `${date.getDate().toString().padStart(2, '0')}`;
@@ -37,10 +85,6 @@ export default function ExpenseTracker() {
         }
     }, [loaded]);
 
-    // Function to reset the form using a ref to the reset button
-    const resetForm = () => {
-        resetRef.current?.click();
-    };
 
     /**
      * Handles the form submit event and returns the transaction data.
@@ -80,7 +124,7 @@ export default function ExpenseTracker() {
                 form.removeEventListener('submit', handleFormSubmit);
             };
         }
-    }, [popupOn]);
+    }, []);
 
     // Display a subset of transaction data if there are more than 15 entries
     const shortDisplay: TransactionData[] = transactionData.length > 15 && !shownAll ? transactionData.slice(0, 15) : transactionData;
@@ -95,69 +139,8 @@ export default function ExpenseTracker() {
                     the platform provides a holistic approach for users to efficiently manage both their time and resources, promoting a more balanced and fulfilling life.
                 </p>
             </article>
-            <button type="button" onClick={() => setPopupOn(true)}>Add Income/Expense</button>
-            {popupOn ? (
-                <>
-                    <div className="popupfade" id="popup" onClick={() => setPopupOn(false)}></div>
-                    <article className="popup">
-                        <header className="popupTopbar">
-                            <button type="button" className="closeButton" id="closeButton" onClick={() => { setPopupOn(false); resetForm(); }}>X</button>
-                            <p>Transactions</p>
-                            <button type="button" className="minusButton" onClick={() => setPopupOn(false)}>-</button>
-                        </header>
-                        <div className="popupContent">
-                            <form id="transactionForm">
-                                <div className="incomeExpense">
-                                    <div>
-                                        <label className="description" htmlFor="income">Income</label>
-                                        <input type="radio" name="type" id="income" value="income" />
-                                    </div>
-                                    <div>
-                                        <label className="description" htmlFor="expense">Expense</label>
-                                        <input type="radio" name="type" id="expense" value="expense" defaultChecked />
-                                    </div>
-                                </div>
-                                <div className="textForms">
-                                    <label htmlFor="amount">Enter Amount</label>
-                                    <input name="amount" id="amount" className="bigInput" type="number" placeholder="amount" min={0} max={10000000000} required />
-                                    <label htmlFor="description">Type Description</label>
-                                    <input name="description" id="description" className="input" type="text" maxLength={32} placeholder="description" required />
-                                    <label htmlFor="comments">Type Comments (Optional)</label>
-                                    <input name="comments" id="comments" className="input" type="text" maxLength={32} placeholder="comments" />
-                                </div>
-                                <div className="categoryForm">
-                                    <label htmlFor="category">Category</label>
-                                    <select name="category" id="category">
-                                        <option value="Regular Income">Regular Income</option>
-                                        <option value="Rent & Bills">Rent & Bills</option>
-                                        <option value="Grocery">Grocery</option>
-                                        <option value="Utilities">Utilities</option>
-                                        <option value="Entertainment">Entertainment</option>
-                                        <option value="Travel">Travel</option>
-                                        <option value="Insurance">Insurance</option>
-                                        <option value="Law">Law</option>
-                                        <option value="Health">Health</option>
-                                        <option value="Savings">Savings</option>
-                                        <option value="Credit Card">Credit Card</option>
-                                        <option value="Debt">Debt</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                                <div className="plannedForm">
-                                    <div>
-                                        <label htmlFor="planned">Planned?</label>
-                                        <input type="checkbox" name="planned" id="planned" />
-                                    </div>
-                                </div>
-                                <div className="submitForm">
-                                    <button className='formSubmit' type="submit">Add Transaction</button>
-                                </div>
-                                <button ref={resetRef} id="reset" type="reset" style={{ display: 'none' }}>Hi</button>
-                            </form>
-                        </div>
-                    </article>
-                </>
-            ) : null}
+            <button type="button" onClick={()=>PersistantFunctions.togglePopup()}>Add Income/Expense</button>
+            <Popup heading="Transaction" content={transactionForm} isForm={true} dataToCollect={['type','amount', 'description', 'category', 'planned', 'comments']}/>
             <ExpenseTable transactionData={shortDisplay} />
             <div className='tableBottom'>
                 {transactionData.length > 15 ? !shownAll ? <button className='showAll' type='button' onClick={() => setShownAll(true)}>Show All</button> :

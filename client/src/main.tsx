@@ -12,7 +12,7 @@ import Todo from "./to-do.tsx";
 import ExpenseTracker from "./expenseTracker";
 import Weather from "./weather.tsx";
 import Contact from "./contact";
-import NotFound from "./404.tsx";
+import NotFound from "./Utils/404.tsx";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import Ui from "./UI.tsx";
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "*",
+    path: "/*",
     element: (
       <>
         <header>

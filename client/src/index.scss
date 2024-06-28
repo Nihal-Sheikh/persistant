@@ -105,6 +105,70 @@ header {
     }
   }
 }
+.popup,.popupfade{
+  display: none;
+}
+.popupfade {
+  position: fixed;
+  width: 100vw;
+  height: 100vw;
+  margin: 0;
+  top: 0;
+  left: 0;
+  background-color: #80808020;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  z-index: calc(var(--max) - 2);
+}
+.popup {
+  position: fixed;
+  width: 50vw;
+  max-width: 80vh;
+  background-color: var(--main-background-color-primary);
+  top: 50vh;
+  left: 50vw;
+  padding: 0;
+  transform: translate(-50%,-50%);
+  border-radius: 3vh;
+  border: var(--light-color-primary) 0.5vh solid;
+  z-index: calc(var(--max) - 1);
+  .popupTopbar {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+      flex-direction: row-reverse;
+      border-bottom: var(--light-color-primary) 0.5vh solid;
+      button {
+          width: min-content;
+          height: min-content;
+          font-weight: 900;            
+          padding: 0 1vh 0 1vh;
+          background-color: #00000000;
+          border-color: #00000000;
+          color: var(--main-color-primary);
+          margin: 0;
+      }
+      p {
+          font-size: 3vh;
+          font-weight: bold;
+          margin: 0;
+      }
+      .minusButton {
+          font-size: 5vh;
+          line-height: 3vh;
+      }
+  }
+  .popupContent {
+      position: relative;
+      padding: 1vh;
+      h1 {
+        text-align: center;
+      }
+  }
+} 
 main {
   min-height: 66vh;
 }
@@ -309,6 +373,14 @@ section {
     --navbar-color-secondary: black;
     --button-color-primary: #009ef9;
     --button-color-secondary: #000732;
+    .popupfade{
+    }
+    .popup {
+        border-color: var(--main-color-primary);
+        .popupTopbar {
+            border-color: var(--main-color-primary);
+        }
+    }
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -321,5 +393,6 @@ section {
   --navbar-color-secondary: #dedede;
   --button-color-primary: #000732;
   --button-color-secondary: #009ef9;
+  
   }
 }

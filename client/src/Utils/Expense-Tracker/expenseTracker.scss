@@ -31,145 +31,87 @@
     --navbar-color-secondary: #eaeaea;
   }
 // variable and mode intialization
-.popupfade {
-    position: fixed;
-    width: 100vw;
-    height: 100vw;
+
+
+form {
     margin: 0;
-    top: 0;
-    left: 0;
-    background-color: #80808020;
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-    z-index: calc(var(--max) - 2);
-}
-.popup {
-    position: fixed;
-    width: 50vw;
-    max-width: 80vh;
-    min-width: 38vh;
-    background-color: var(--main-background-color-primary);
-    top: 50vh;
-    left: 50vw;
     padding: 0;
-    transform: translate(-50%,-50%);
-    border-radius: 3vh;
-    border: var(--light-color-primary) 0.5vh solid;
-    z-index: calc(var(--max) - 1);
-    .popupTopbar {
-        width: 100%;
-        position: relative;
+    width: 100%;
+    height: 100%;
+    .incomeExpense {
         display: flex;
-        justify-content: space-between;
-        margin: 0;
-        padding: 0;
-        flex-direction: row-reverse;
-        border-bottom: var(--light-color-primary) 0.5vh solid;
-        button {
-            width: min-content;
-            height: min-content;
-            font-weight: 900;            
-            padding: 0 1vh 0 1vh;
-            background-color: #00000000;
-            border-color: #00000000;
-            color: var(--main-color-primary);
-            margin: 0;
-        }
-        p {
-            
-            font-size: 3vh;
-            font-weight: bold;
-            margin: 0;
-        }
-        .minusButton {
-            font-size: 5vh;
-            line-height: 3vh;
+        justify-content: space-around;
+        margin: 0 0 2vh 0;
+        input {
+            height: 2vh;
+            width: 2vh;
+            transform: translate(0%,20%);
         }
     }
-    .popupContent {
+    .submitForm .formSubmit {
+        position: relative;
+        background-color: var(--button-color-primary);
+        color: var(--main-color-primary);
+        font-size: 2vh;
+        border-radius: 2vh;
+        border: 0;
+        padding: 1vh;
+        height: min-content;
+        margin: 1vh;
+        width: 90%;
+    }
+    .textForms{
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 0%;
+        input {
+            font-family: 'Inter',Arial, Helvetica,sans-serif;
+            position: relative;
+            background-color: var(--main-background-color-primary);
+            color: var(--main-color-primary);
+            font-size: 2vh;
+            border: var(--light-color-primary) 0.15rem solid;
+            border-radius: 2vh;
+            padding: 0.7vh 0vh 0.7vh 1vh;
+            margin: 1vh;
+            width: 80%;
+            flex-basis: 0%;
+        }
+    }
+    .categoryForm {
         position: relative;
         padding: 1vh;
-        form {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            .incomeExpense {
-                display: flex;
-                justify-content: space-around;
-                margin: 0 0 2vh 0;
-                input {
-                    height: 2vh;
-                    width: 2vh;
-                    transform: translate(0%,20%);
-                }
-            }
-            button {
-                position: relative;
-                background-color: var(--button-color-primary);
-                color: var(--main-color-primary);
-                font-size: 2vh;
-                border-radius: 2vh;
-                border: 0;
-                padding: 1vh;
-                height: min-content;
-                margin: 1vh;
-                width: 90%;
-            }
-            .textForms{
-                position: relative;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                flex-basis: 0%;
-                input {
-                    font-family: 'Inter',Arial, Helvetica,sans-serif;
-                    position: relative;
-                    background-color: var(--main-background-color-primary);
-                    color: var(--main-color-primary);
-                    font-size: 2vh;
-                    border: var(--light-color-primary) 0.15rem solid;
-                    border-radius: 2vh;
-                    padding: 0.7vh 0vh 0.7vh 1vh;
-                    margin: 1vh;
-                    width: 80%;
-                    flex-basis: 0%;
-                }
-            }
-            .categoryForm {
-                position: relative;
-                padding: 1vh;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                select {
-                    background-color: var(--main-background-color-primary);
-                    color: var(--main-color-primary);
-                    font-size: 2vh;
-                    border: var(--light-color-primary) 0.15rem solid;
-                    border-radius: 2vh;
-                    padding: 0.7vh;
-                    margin: 1vh;
-                }
-            }
-            .plannedForm {
-                position: relative;
-                padding: 1vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .submitForm {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        select {
+            background-color: var(--main-background-color-primary);
+            color: var(--main-color-primary);
+            font-size: 2vh;
+            border: var(--light-color-primary) 0.15rem solid;
+            border-radius: 2vh;
+            padding: 0.7vh;
+            margin: 1vh;
         }
     }
-} 
+    .plannedForm {
+        position: relative;
+        padding: 1vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .submitForm {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
 
 body {
     button {
@@ -270,25 +212,17 @@ body {
     }
 }
 @media (prefers-color-scheme: light) {
-    .popupfade{
-        .popup {
-            border-color: var(--main-color-primary);
-            .popupTopbar {
+    form {
+        .textForms {            
+            input{
+                color: var(--main-color-primary);
                 border-color: var(--main-color-primary);
             }
-            .content {
-                .textForms {            
-                    input{
-                        color: var(--main-color-primary);
-                        border-color: var(--main-color-primary);
-                    }
-                }
-                .categoryForm {
-                    select {
-                        color: var(--main-color-primary);
-                        border-color: var(--main-color-primary);
-                    }
-                }
+        }
+        .categoryForm {
+            select {
+                color: var(--main-color-primary);
+                border-color: var(--main-color-primary);
             }
         }
     }
