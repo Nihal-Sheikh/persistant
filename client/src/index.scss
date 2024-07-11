@@ -1,7 +1,7 @@
 :root {
-  --main-background-color-primary: #eeeeee;
+  --main-background-color-primary: #eee;
   --main-color-primary: black;
-  --navbar-color-primary: #dedede;
+  --navbar-color-primary: #ffffff;
   --main-background-color-secondary: #2b2b2b;
   --main-color-secondary: white;
   --navbar-color-secondary: black;
@@ -20,9 +20,9 @@
   --button-color-secondary: #009ef9;
 }
 [data-theme="light"] {
-  --main-background-color-primary: #ffffff;
+  --main-background-color-primary: #ededed;
   --main-color-primary: black;
-  --navbar-color-primary: #dedede;
+  --navbar-color-primary: #ffffff;
   --main-background-color-secondary: #2b2b2b;
   --main-color-secondary: white;
   --navbar-color-secondary: black;
@@ -111,7 +111,7 @@ header {
 .popupfade {
   position: fixed;
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
   margin: 0;
   top: 0;
   left: 0;
@@ -123,6 +123,7 @@ header {
 .popup {
   position: fixed;
   width: 50vw;
+  min-width: 40vh;
   max-width: 80vh;
   background-color: var(--main-background-color-primary);
   top: 50vh;
@@ -365,9 +366,9 @@ section {
 }
 @media (prefers-color-scheme: light) {
   :root {  
-    --main-background-color-primary: #ffffff;
+    --main-background-color-primary: #ededed;
     --main-color-primary: black;
-    --navbar-color-primary: #dedede;
+    --navbar-color-primary: #ffffff;
     --main-background-color-secondary: #2b2b2b;
     --main-color-secondary: white;
     --navbar-color-secondary: black;

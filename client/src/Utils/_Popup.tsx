@@ -27,14 +27,15 @@ const _Popup: React.FC<_Popup_props> = (props) => {
         }
     };
 
+    const togglePopup = PersistantFunctions.togglePopup;
     const popUpStructure: JSX.Element = (
         <>
-            <div className="popupfade" id="popup" onClick={()=>PersistantFunctions.togglePopup()}></div>
+            <div className="popupfade" id="popup" onClick={()=>togglePopup()}></div>
             <article className="popup">
                 <header className="popupTopbar">
-                    <button type="button" className="closeButton" id="closeButton" onClick={() => { PersistantFunctions.togglePopup(); resetForm(); }}>X</button>
+                    <button type="button" className="closeButton" id="closeButton" onClick={() => { togglePopup(); resetForm(); }}>X</button>
                     <p>{props.heading?props.heading:""}</p>
-                    <button type="button" className="minusButton" onClick={() => PersistantFunctions.togglePopup()}>-</button>
+                    <button type="button" className="minusButton" onClick={() => togglePopup()}>-</button>
                 </header>
                 <div className="popupContent">
                     {props.content}

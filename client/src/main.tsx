@@ -1,4 +1,5 @@
 import React from "react";
+import Persistant from "./Utils/PersistantFunctions.ts";'./Utils/PersistantFunctions.ts';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import { onAuthStateChanged } from "firebase/auth";
 import "./Utils/Pomodoro/pomodoro.scss";
@@ -102,20 +103,8 @@ const router = createBrowserRouter([
     ),
   },
 ]);
-function detectColorScheme() {
-  let theme = "dark";
-  if (localStorage.getItem("theme")) {
-    if (localStorage.getItem("theme") === "light") {
-      theme = "light";
-    }
-  } else if (window.matchMedia) {
-    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-      theme = "light";
-    }
-  }
-  document.documentElement.setAttribute("data-theme", theme);
-}//gets the theme and writes it to the document
-detectColorScheme();
+//gets the theme and writes it to the document
+Persistant.detectColorScheme();
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />

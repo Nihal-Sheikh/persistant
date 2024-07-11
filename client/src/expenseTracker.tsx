@@ -2,6 +2,7 @@ import PersistantFunctions from './Utils/PersistantFunctions.ts';
 import ExpenseTable from './Utils/Expense-Tracker/expenseTrackerTable.tsx';
 import Popup from './Utils/_Popup.tsx';
 import { useState, useEffect, useRef } from "react";
+import {AreaChart} from 'recharts';
 
 interface TransactionData {
     type: string | null;
@@ -14,6 +15,7 @@ interface TransactionData {
 }
 
 export default function ExpenseTracker() {
+    const togglePopup = PersistantFunctions.togglePopup;
     const [loaded, setLoaded] = useState(false);
     const [shownAll, setShownAll] = useState(false);
     const [transactionData, setTransactionData] = useState<TransactionData[]>([]);
@@ -84,7 +86,11 @@ export default function ExpenseTracker() {
             setLoaded(true);
         }
     }, [loaded]);
-
+    useEffect(() => {
+        if (loaded) {
+            localStorage.setItem("transactionData", JSON.stringify(transactionData));
+        }
+    }, [transactionData]);
 
     /**
      * Handles the form submit event and returns the transaction data.
@@ -139,7 +145,9 @@ export default function ExpenseTracker() {
                     the platform provides a holistic approach for users to efficiently manage both their time and resources, promoting a more balanced and fulfilling life.
                 </p>
             </article>
-            <button type="button" onClick={()=>PersistantFunctions.togglePopup()}>Add Income/Expense</button>
+            <AreaChart>
+            </AreaChart>
+            <button type="button" id='addTransaction' onClick={()=>togglePopup()}>Add Income/Expense</button>
             <Popup heading="Transaction" content={transactionForm} isForm={true} dataToCollect={['type','amount', 'description', 'category', 'planned', 'comments']}/>
             <ExpenseTable transactionData={shortDisplay} />
             <div className='tableBottom'>
