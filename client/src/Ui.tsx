@@ -50,18 +50,18 @@ export default function Ui() {
   return (
     <>
       <nav>
-        <Link to={"/"} id="HambergerMenu">
-          <div id="HambergerContainer">
-            <div className="Hamberger"></div>
-            <div className="Hamberger"></div>
-            <div className="Hamberger"></div>
+        <Link to={"/"} id="HamburgerMenu" aria-label="Home">
+          <div id="HamburgerContainer">
+            <div className="Hamburger"></div>
+            <div className="Hamburger"></div>
+            <div className="Hamburger"></div>
           </div>
         </Link>
         <Link to="/">
           <h1 className="logo">Persistant</h1>
         </Link>
         <ul>
-          <Link
+          <li><Link
             className="UIListItem"
             onPointerEnter={() => Underlinepseudoelement(0)}
             onPointerLeave={() => DeUnderlinepseudoelement(0)}
@@ -71,8 +71,8 @@ export default function Ui() {
               <span>Focus</span> <i className="fa fa-sun-o"></i>{" "}
               <div className="Uipseudo-element"></div>
             </h1>
-          </Link>
-          <Link
+          </Link></li>
+          <li><Link
             className="UIListItem"
             onPointerEnter={() => Underlinepseudoelement(1)}
             onPointerLeave={() => DeUnderlinepseudoelement(1)}
@@ -83,8 +83,8 @@ export default function Ui() {
               <span>To-Do</span> <i className="fa fa-check-square-o"></i>
               <div className="Uipseudo-element"></div>
             </h1>
-          </Link>
-          <Link
+          </Link></li>
+          <li><Link
             className="UIListItem"
             onPointerEnter={() => Underlinepseudoelement(2)}
             onPointerLeave={() => DeUnderlinepseudoelement(2)}
@@ -94,15 +94,15 @@ export default function Ui() {
               <span>Expense-Tracker</span> <i className="fa fa-money"></i>
               <div className="Uipseudo-element"></div>
             </h1>
-          </Link>
-          <Link
+          </Link></li>
+          <li><Link
             className="UIListItem"
             onPointerEnter={() => Underlinepseudoelement(3)}
             onPointerLeave={() => DeUnderlinepseudoelement(3)}
             to="/weather"
           >
             {currentWeather} <div className="Uipseudo-element"></div>
-          </Link>
+          </Link></li>
         </ul>
       </nav>
     </>

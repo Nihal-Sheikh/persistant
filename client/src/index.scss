@@ -75,13 +75,16 @@ header {
       flex-direction: row;
       font-size: 3vh;
       margin: 0 1vh;
-      .UIListItem {
+      li{
+        margin: 0 2vh 4vh 0;
+        height: 0;
+        .UIListItem {
         margin: 0 2vh 0 0;
         font-weight: 500;
         h1 {
           margin: 0;
         }
-      }
+      }}
     }
     h1 {
       font-size: 3vh;
@@ -90,11 +93,11 @@ header {
       font-weight: 500;
     }
   }
-  #HambergerMenu {
+  #HamburgerMenu {
     display: none;
-    #HambergerContainer {
+    #HamburgerContainer {
       flex-direction: column;
-      .Hamberger {
+      .Hamburger {
         border-radius: 100vh;
         width: 3.8vh;
         height: 0.4vh;
@@ -320,9 +323,9 @@ section {
   .UIListItem span {
     display: none;
   }
-  header nav #HambergerMenu {
+  header nav #HamburgerMenu {
     display: block;
-    #HambergerContainer {
+    #HamburgerContainer {
       display: flex;
     }
   }
