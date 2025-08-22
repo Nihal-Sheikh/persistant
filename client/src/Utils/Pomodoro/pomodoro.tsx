@@ -1,5 +1,5 @@
 import { ChangeEvent, useState, useEffect } from "react";
-import Pomodoro from "./Utils/Pomodoro/pomodoroClock";
+import Pomodoro from "./pomodoroClock";
 export default function PomodoroInput() {
   const [sessionTime, setSessionTime] = useState(0);
   const [restTime, setRestTime] = useState(0);

@@ -1,4 +1,4 @@
-import PomodoroInput from "./pomodoro";
+import PomodoroInput from "./Utils/Pomodoro/pomodoro";
 
 export default function focusMode() {
   return (

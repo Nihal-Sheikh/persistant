@@ -25,7 +25,7 @@ export default function App(props: AppProps) {
     }
     date = new Date(); // captures current time
     const timeInSeconds: number =
-      date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();// last captures time
+      date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds(); // last captures time
     const interval = setInterval(() => {
       setTotalSeconds(() => {
         if (Paused.current) {
@@ -94,8 +94,13 @@ export default function App(props: AppProps) {
   if (props.sessionTime === 0) {
     return <></>;
   } else if (totalTime > 480) {
-    window.alert(
-      "Total time should be less than 8 hours. We do not allow nor encourage overtime"
+    return (
+      <>
+        <h2>
+          Total time should be less than 9 hours. We do not allow nor encourage
+          overtime. Total time is around {Math.round(totalTime / 61)} hours
+        </h2>
+      </>
     );
     return <></>;
   }
