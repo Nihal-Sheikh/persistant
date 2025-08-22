@@ -98,7 +98,7 @@ export default function App(props: AppProps) {
       <>
         <h2>
           Total time should be less than 9 hours. We do not allow nor encourage
-          overtime. Total time is around {Math.round(totalTime / 61)} hours
+          overtime. Total time is around {Math.round(totalTime / 60)} hours
         </h2>
       </>
     );
