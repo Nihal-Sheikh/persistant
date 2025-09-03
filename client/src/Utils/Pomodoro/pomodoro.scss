@@ -8,13 +8,12 @@
 .repeat {
   margin: 1rem 0 1rem 0;
   position: relative;
-  padding: 0;
   background-color: var(--form-color);
   color: var(--main-color-primary);
   font-size: 3vh;
   border: var(--main-color-primary) 0.15rem solid;
   border-radius: 2vh;
-  padding: 1vh 0;
+  padding: 1vh 1vh;
   width: 100%;
 }
 .pomodoro {
@@ -49,7 +48,6 @@
         width: 50%;
         border: var(--main-color-primary) 0.15rem solid;
         border-radius: min(3vh, 3vw);
-        padding-left: 1vh;
       }
     }
   }
@@ -65,7 +63,6 @@
       font-weight: 500;
       border: var(--navbar-color-secondary) 0.15rem solid;
       border-radius: 2vh;
-      padding: 0 1vh 0 1vh;
       padding: 1vh 2vh;
       margin: 1rem;
       :active {
