@@ -33,8 +33,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "Inter", "Arial",
-    sans-serif;
+  font-family: "Inter", "Arial", sans-serif;
   font-weight: 400;
 }
 
@@ -75,16 +74,17 @@ header {
       flex-direction: row;
       font-size: 3vh;
       margin: 0 1vh;
-      li{
+      li {
         margin: 0 2vh 4vh 0;
         height: 0;
         .UIListItem {
-        margin: 0 2vh 0 0;
-        font-weight: 500;
-        h1 {
-          margin: 0;
+          margin: 0 2vh 0 0;
+          font-weight: 500;
+          h1 {
+            margin: 0;
+          }
         }
-      }}
+      }
     }
     h1 {
       font-size: 3vh;
@@ -108,7 +108,8 @@ header {
     }
   }
 }
-.popup,.popupfade{
+.popup,
+.popupfade {
   display: none;
 }
 .popupfade {
@@ -132,47 +133,47 @@ header {
   top: 50vh;
   left: 50vw;
   padding: 0;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   border-radius: 3vh;
   border: var(--light-color-primary) 0.5vh solid;
   z-index: calc(var(--max) - 1);
   .popupTopbar {
-      width: 100%;
-      position: relative;
-      display: flex;
-      justify-content: space-between;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    flex-direction: row-reverse;
+    border-bottom: var(--light-color-primary) 0.5vh solid;
+    button {
+      width: min-content;
+      height: min-content;
+      font-weight: 900;
+      padding: 0 1vh 0 1vh;
+      background-color: #00000000;
+      border-color: #00000000;
+      color: var(--main-color-primary);
       margin: 0;
-      padding: 0;
-      flex-direction: row-reverse;
-      border-bottom: var(--light-color-primary) 0.5vh solid;
-      button {
-          width: min-content;
-          height: min-content;
-          font-weight: 900;            
-          padding: 0 1vh 0 1vh;
-          background-color: #00000000;
-          border-color: #00000000;
-          color: var(--main-color-primary);
-          margin: 0;
-      }
-      p {
-          font-size: 3vh;
-          font-weight: bold;
-          margin: 0;
-      }
-      .minusButton {
-          font-size: 5vh;
-          line-height: 3vh;
-      }
+    }
+    p {
+      font-size: 3vh;
+      font-weight: bold;
+      margin: 0;
+    }
+    .minusButton {
+      font-size: 5vh;
+      line-height: 3vh;
+    }
   }
   .popupContent {
-      position: relative;
-      padding: 1vh;
-      h1 {
-        text-align: center;
-      }
+    position: relative;
+    padding: 1vh;
+    h1 {
+      text-align: center;
+    }
   }
-} 
+}
 main {
   min-height: 66vh;
 }
@@ -243,6 +244,7 @@ section {
       width: 100%;
       height: 100%;
       transition: inherit;
+      object-fit: cover;
       filter: brightness(1);
     }
     div {
@@ -304,6 +306,7 @@ section {
       width: 100%;
       height: 100%;
       border-radius: 5vw;
+      object-fit: cover;
     }
     h1 {
       text-align: center;
@@ -368,7 +371,7 @@ section {
   }
 }
 @media (prefers-color-scheme: light) {
-  :root {  
+  :root {
     --main-background-color-primary: #ededed;
     --main-color-primary: black;
     --navbar-color-primary: #ffffff;
@@ -377,26 +380,25 @@ section {
     --navbar-color-secondary: black;
     --button-color-primary: #009ef9;
     --button-color-secondary: #000732;
-    .popupfade{
+    .popupfade {
     }
     .popup {
+      border-color: var(--main-color-primary);
+      .popupTopbar {
         border-color: var(--main-color-primary);
-        .popupTopbar {
-            border-color: var(--main-color-primary);
-        }
+      }
     }
   }
 }
 @media (prefers-color-scheme: dark) {
   :root {
-  --main-background-color-primary: #2b2b2b;
-  --main-color-primary: white;
-  --navbar-color-primary: black;
-  --main-background-color-secondary: #eaeaea;
-  --main-color-secondary: black;
-  --navbar-color-secondary: #dedede;
-  --button-color-primary: #000732;
-  --button-color-secondary: #009ef9;
-  
+    --main-background-color-primary: #2b2b2b;
+    --main-color-primary: white;
+    --navbar-color-primary: black;
+    --main-background-color-secondary: #eaeaea;
+    --main-color-secondary: black;
+    --navbar-color-secondary: #dedede;
+    --button-color-primary: #000732;
+    --button-color-secondary: #009ef9;
   }
 }

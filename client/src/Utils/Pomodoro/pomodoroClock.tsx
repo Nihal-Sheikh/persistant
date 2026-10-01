@@ -88,6 +88,11 @@ export default function App(props: AppProps) {
         resumeTimeinSeconds.current - pauseTimeinSeconds.current;
     }
   }
+  try {
+if ('wakeLock' in navigator) {
+let screenLock = await navigator.wakeLock.request('screen');
+console.log('Screen Wake Lock is active!');
+}
   const seconds: number = totalSeconds % 60;
   const minutes: number = Math.floor(totalSeconds / 60) % 60;
   const hours: number = Math.floor(totalSeconds / 3600);
