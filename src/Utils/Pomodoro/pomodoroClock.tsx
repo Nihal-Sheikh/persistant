@@ -4,7 +4,7 @@ interface AppProps {
   sessionTime: number;
   repeatCount: number;
 }
-export default function App(props: AppProps) {
+export default async function App(props: AppProps) {
   const restTime: number = props.restTime * 60; //converts rest time to seconds
   const workTime: number = props.sessionTime * 60; //converts work time to seconds
   const repeats: number = props.repeatCount * 2; // dulicates the repeats to take the fact that there will two sessions(worktime and resttime into account)
@@ -18,12 +18,12 @@ export default function App(props: AppProps) {
   const resumeTimeinSeconds = useRef<number>(0);
   const totalPauseTimeinSeconds = useRef<number>(0);
   const modifier = useRef<number>(1);
-  let date: Date;
+  const [date, setDate] = useState<Date>(new Date());
   useEffect(() => {
     if (totalTime === 0) {
       return;
     }
-    date = new Date(); // captures current time
+    setDate(new Date());
     const timeInSeconds: number =
       date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds(); // last captures time
     const interval = setInterval(() => {
@@ -89,10 +89,13 @@ export default function App(props: AppProps) {
     }
   }
   try {
-if ('wakeLock' in navigator) {
-let screenLock = await navigator.wakeLock.request('screen');
-console.log('Screen Wake Lock is active!');
-}
+    if ("wakeLock" in navigator) {
+      let screenLock = await navigator.wakeLock.request("screen");
+      console.log("Screen Wake Lock is active!");
+    }
+  } catch (err) {
+    console.error("Screen Wake Lock is not supported in this browser.");
+  }
   const seconds: number = totalSeconds % 60;
   const minutes: number = Math.floor(totalSeconds / 60) % 60;
   const hours: number = Math.floor(totalSeconds / 3600);
