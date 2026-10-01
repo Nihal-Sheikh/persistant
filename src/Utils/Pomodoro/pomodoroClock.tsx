@@ -4,7 +4,7 @@ interface AppProps {
   sessionTime: number;
   repeatCount: number;
 }
-export default async function App(props: AppProps) {
+export default function App(props: AppProps) {
   const restTime: number = props.restTime * 60; //converts rest time to seconds
   const workTime: number = props.sessionTime * 60; //converts work time to seconds
   const repeats: number = props.repeatCount * 2; // dulicates the repeats to take the fact that there will two sessions(worktime and resttime into account)
@@ -88,13 +88,9 @@ export default async function App(props: AppProps) {
         resumeTimeinSeconds.current - pauseTimeinSeconds.current;
     }
   }
-  try {
-    if ("wakeLock" in navigator) {
-      let screenLock = await navigator.wakeLock.request("screen");
-      console.log("Screen Wake Lock is active!");
-    }
-  } catch (err) {
-    console.error("Screen Wake Lock is not supported in this browser.");
+  if ("wakeLock" in navigator) {
+    navigator.wakeLock.request("screen");
+    console.log("Screen Wake Lock is active!");
   }
   const seconds: number = totalSeconds % 60;
   const minutes: number = Math.floor(totalSeconds / 60) % 60;
