@@ -19,14 +19,19 @@ export default function App(props: AppProps) {
   const resumeTimeinSeconds = useRef<number>(0);
   const totalPauseTimeinSeconds = useRef<number>(0);
   const modifier = useRef<number>(1);
-  const [date, setDate] = useState<Date>(new Date());
+  const pauseAudio = new Audio("/Pause.mp3");
+  const resumeAudio = new Audio("/Resume.mp3");
+  const alarmAudio = new Audio("/Alarm.mp3");
+  const restAudio = new Audio("/Rest.mp3");
   useEffect(() => {
     if (totalTime === 0) {
       return;
     }
-    setDate(new Date());
+
+    const date: Date = new Date();
     const timeInSeconds: number =
       date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds(); // last captures time
+
     const interval = setInterval(() => {
       setTotalSeconds(() => {
         if (paused.current) {
@@ -50,13 +55,9 @@ export default function App(props: AppProps) {
 
         if (newTotalSeconds >= currentSession) {
           if (working) {
-            const audio = new Audio("/Rest.mp3");
-            audio.play();
             setCurrentSession(restTime);
             setWorking(false);
           } else {
-            const audio = new Audio("/Alarm.mp3");
-            audio.play();
             setCurrentSession(workTime);
             setWorking(true);
           }
@@ -69,8 +70,14 @@ export default function App(props: AppProps) {
     }
 
     return () => clearInterval(interval);
-  }, [repeatsDone]);
+  }, [repeatsDone, working, currentSession]);
   useEffect(() => {
+    console.log("working", working);
+    if (working) {
+      restAudio.play();
+    } else {
+      alarmAudio.play();
+    }
     if (repeatsDone < repeats) {
       setTotalSeconds(0);
       setRepeatsDone((prevRepeatsDone) => prevRepeatsDone + 1);
@@ -86,14 +93,12 @@ export default function App(props: AppProps) {
     paused.current = !paused.current;
     setPaused(paused.current);
     if (paused.current) {
-      const audio = new Audio("/Pause.mp3");
-      audio.play();
+      pauseAudio.play();
       const d = new Date();
       pauseTimeinSeconds.current =
         d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
     } else {
-      const audio = new Audio("/Resume.mp3");
-      audio.play();
+      resumeAudio.play();
       modifier.current =
         resumeTimeinSeconds.current - pauseTimeinSeconds.current;
     }
@@ -108,11 +113,11 @@ export default function App(props: AppProps) {
       <>
         <h2>
           Total time should be less than 9 hours. We do not allow nor encourage
-          overtime. Total time is around {Math.round(totalTime / 60)} hours
+          working overtime. Total time is around {Math.round(totalTime / 60)}{" "}
+          hours
         </h2>
       </>
     );
-    return <></>;
   }
 
   return (

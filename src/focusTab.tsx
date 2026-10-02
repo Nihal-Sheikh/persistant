@@ -2,7 +2,7 @@ import PomodoroInput from "./Utils/Pomodoro/pomodoro";
 
 export default function focusMode() {
   try {
-    if ("wakeLock" in navigator) {
+    if ("wakeLock" in navigator && navigator.userActivation.hasBeenActive) {
       navigator.wakeLock.request("screen");
     }
   } catch (err) {
