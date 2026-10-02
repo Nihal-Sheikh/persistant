@@ -5,13 +5,6 @@ interface AppProps {
   repeatCount: number;
 }
 export default function App(props: AppProps) {
-  try {
-    if ("wakeLock" in navigator) {
-      navigator.wakeLock.request("screen");
-    }
-  } catch (err) {
-    console.error("error", err);
-  }
   const restTime: number = props.restTime * 60; //converts rest time to seconds
   const workTime: number = props.sessionTime * 60; //converts work time to seconds
   const repeats: number = props.repeatCount * 2; // dulicates the repeats to take the fact that there will two sessions(worktime and resttime into account)
@@ -20,7 +13,8 @@ export default function App(props: AppProps) {
   const [totalSeconds, setTotalSeconds] = useState<number>(0); //totalseconds on for
   const [currentSession, setCurrentSession] = useState<number>(workTime); //how many minutes will the current session last
   const [working, setWorking] = useState<boolean>(true);
-  const Paused = useRef<boolean>(false); //paused or not
+  const [uipaused, setPaused] = useState<boolean>(false);
+  const paused = useRef<boolean>(false); //paused or not
   const pauseTimeinSeconds = useRef<number>(0);
   const resumeTimeinSeconds = useRef<number>(0);
   const totalPauseTimeinSeconds = useRef<number>(0);
@@ -35,7 +29,7 @@ export default function App(props: AppProps) {
       date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds(); // last captures time
     const interval = setInterval(() => {
       setTotalSeconds(() => {
-        if (Paused.current) {
+        if (paused.current) {
           const d: Date = new Date();
           resumeTimeinSeconds.current =
             d.getHours() * 3600 +
@@ -56,9 +50,13 @@ export default function App(props: AppProps) {
 
         if (newTotalSeconds >= currentSession) {
           if (working) {
+            const audio = new Audio("/Rest.mp3");
+            audio.play();
             setCurrentSession(restTime);
             setWorking(false);
           } else {
+            const audio = new Audio("/Alarm.mp3");
+            audio.play();
             setCurrentSession(workTime);
             setWorking(true);
           }
@@ -85,12 +83,17 @@ export default function App(props: AppProps) {
     setCurrentSession(workTime);
   }, [props.sessionTime, props.restTime, props.repeatCount]);
   function handlePause() {
-    Paused.current = !Paused.current;
-    if (Paused.current) {
+    paused.current = !paused.current;
+    setPaused(paused.current);
+    if (paused.current) {
+      const audio = new Audio("/Pause.mp3");
+      audio.play();
       const d = new Date();
       pauseTimeinSeconds.current =
         d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
     } else {
+      const audio = new Audio("/Resume.mp3");
+      audio.play();
       modifier.current =
         resumeTimeinSeconds.current - pauseTimeinSeconds.current;
     }
@@ -125,7 +128,7 @@ export default function App(props: AppProps) {
         </sup>
       </h1>
       <button type="button" onClick={() => handlePause()} className="pause">
-        Pause
+        {uipaused ? "Resume" : "Pause"}
       </button>
     </div>
   );

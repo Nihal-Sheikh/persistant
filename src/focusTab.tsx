@@ -1,6 +1,13 @@
 import PomodoroInput from "./Utils/Pomodoro/pomodoro";
 
 export default function focusMode() {
+  try {
+    if ("wakeLock" in navigator) {
+      navigator.wakeLock.request("screen");
+    }
+  } catch (err) {
+    console.error("error", err);
+  }
   return (
     <>
       <section>
